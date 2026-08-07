@@ -1,0 +1,14 @@
+- label: HOME
+  url: /
+- label: OUR STORY
+  url: /our-story/
+- label: STUDIO
+  url: /studio/
+- label: GALLERY
+  url: /gallery/
+- label: ART PRINTS
+  url: /art-prints/
+- label: STUDIO MATERIALS
+  url: /studio-materials/
+- label: CONTACT
+  url: /contact/

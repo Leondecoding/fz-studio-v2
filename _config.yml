@@ -1,0 +1,9 @@
+title: FZ Studio
+description: An artist studio for watercolour, prints and selected studio materials.
+url: ""
+baseurl: "/fz-studio-v2"
+permalink: pretty
+
+# V2 principle:
+# Keep all secrets out of this repository and out of browser JavaScript.
+# PayPal and newsletter integrations will be added only after the page structure is final.

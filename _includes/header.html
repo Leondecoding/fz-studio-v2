@@ -1,0 +1,61 @@
+<header class="site-header">
+  <div class="site-header__inner">
+    <a class="site-logo" href="{{ '/' | relative_url }}" aria-label="FZ Studio home">
+      <img
+        src="{{ '/assets/images/logo-reference.jpg' | relative_url }}"
+        alt="FZ Studio"
+        width="75"
+        height="55"
+      >
+    </a>
+
+    <nav id="site-nav" class="site-nav" aria-label="Primary navigation">
+      {% for item in site.data.navigation %}
+        {% assign item_url = item.url | relative_url %}
+        <a
+          href="{{ item_url }}"
+          {% if page.url == item.url %}aria-current="page"{% endif %}
+        >{{ item.label }}</a>
+      {% endfor %}
+    </nav>
+
+    <div class="site-actions">
+      <button
+        class="bag-button"
+        type="button"
+        aria-label="Shopping bag — payment connection will be added later"
+        title="Bag"
+        data-bag-placeholder
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M7 8h10l-1 11H8L7 8z"></path>
+          <path d="M9.5 8a2.5 2.5 0 0 1 5 0"></path>
+        </svg>
+      </button>
+
+      <button
+        id="nav-toggle"
+        class="nav-toggle"
+        type="button"
+        aria-label="Open menu"
+        aria-controls="site-nav"
+        aria-expanded="false"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="bag-placeholder" id="bag-placeholder" hidden>
+  <button class="bag-placeholder__backdrop" type="button" aria-label="Close bag" data-close-bag></button>
+  <aside class="bag-placeholder__panel" aria-label="Shopping bag">
+    <div class="bag-placeholder__header">
+      <h2>BAG</h2>
+      <button type="button" aria-label="Close bag" class="bag-placeholder__close" data-close-bag>×</button>
+    </div>
+    <p>The PayPal Shopping Cart will be connected after the product pages are finalised.</p>
+  </aside>
+</div>
