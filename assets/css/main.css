@@ -9,7 +9,7 @@
   --header-x: 44px;
   --header-y: 25px;
   --logo-height: 54px;
-  --nav-size: 18px;
+  --nav-size: 16px;
   --nav-gap: 27px;
 
   --content-wide: 1280px;
@@ -121,23 +121,9 @@ img {
   letter-spacing: .02em;
 }
 
-.site-nav a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -9px;
-  height: 1px;
-  background: currentColor;
-  transform: scaleX(0);
-  transform-origin: center;
-  transition: transform .18s ease;
-}
-
-.site-nav a:hover::after,
-.site-nav a:focus-visible::after,
-.site-nav a[aria-current="page"]::after {
-  transform: scaleX(1);
+.site-nav a:hover,
+.site-nav a:focus-visible {
+  opacity: .62;
 }
 
 .site-actions {
@@ -191,8 +177,7 @@ img {
 }
 
 .home-hero {
-  min-height: calc(100vh - 108px);
-  padding: 34px var(--page-side) 48px;
+  padding: 40px 0;
   display: grid;
   place-items: center;
 }
@@ -207,10 +192,8 @@ img {
 .home-hero__stage img {
   display: block;
   max-width: 100%;
-  max-height: calc(100vh - 185px);
   width: auto;
   height: auto;
-  object-fit: contain;
 }
 
 /* =========================
@@ -409,16 +392,11 @@ img {
   }
 
   .home-hero {
-    min-height: calc(100vh - 78px);
-    padding-top: 24px;
+    padding: 28px 0 48px;
   }
 
   .home-hero__stage {
     width: min(88vw, 780px);
-  }
-
-  .home-hero__stage img {
-    max-height: calc(100vh - 135px);
   }
 
   .page-shell {
