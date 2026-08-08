@@ -4,9 +4,459 @@ title: Our Story
 permalink: /our-story/
 ---
 
-<section class="page-shell page-shell--reading">
-  <h1 class="page-title">OUR STORY</h1>
-  <div class="page-placeholder">
-    <p>The existing Our Story copy will be migrated here in the next content pass. This page is intentionally kept separate from Home and Studio.</p>
-  </div>
-</section>
+<style>
+  #our-story-page {
+    width: min(calc(100% - 88px), 820px);
+    margin: 0 auto;
+    padding: 68px 0 110px;
+    text-align: center;
+  }
+
+  #our-story-page .story-intro {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  #our-story-page .page-title {
+    margin-bottom: 46px;
+  }
+
+  #our-story-page p {
+    margin: 0 auto 18px;
+    line-height: 1.9;
+  }
+
+  #our-story-page .platform-thread {
+    margin-top: 30px;
+  }
+
+  #our-story-page .platform-thread p {
+    margin-bottom: 10px;
+  }
+
+  #our-story-page .platform-list {
+    max-width: 720px;
+    margin: 18px auto 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  #our-story-page .platform-list li {
+    margin: 0 0 12px;
+    line-height: 1.85;
+  }
+
+  #our-story-page .story-divider {
+    width: 100%;
+    margin: 62px auto;
+    border: 0;
+    border-top: 1px solid var(--line);
+  }
+
+  #our-story-page .story-section {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  #our-story-page .story-section h2 {
+    margin: 0 0 18px;
+    font-size: 22px;
+    font-weight: 300;
+    line-height: 1.3;
+    letter-spacing: .02em;
+  }
+
+  #our-story-page .story-section h3 {
+    margin: 32px 0 12px;
+    font-size: 17px;
+    font-weight: 300;
+    line-height: 1.4;
+  }
+
+  #our-story-page .signup-note {
+    max-width: 650px;
+    color: var(--muted);
+  }
+
+  #our-story-page .nl-wrap {
+    max-width: 540px;
+    margin: 30px auto 0;
+  }
+
+  #our-story-page .nl-input {
+    width: 100%;
+    height: 52px;
+    padding: 0 16px;
+    border: 1px solid #d9d9d9;
+    border-radius: 0;
+    background: #fff;
+    color: var(--text);
+    box-sizing: border-box;
+    outline: none;
+  }
+
+  #our-story-page .nl-input:focus {
+    border-color: #777;
+  }
+
+  #our-story-page .nl-submit {
+    margin: 13px 0 4px;
+    padding: 4px 1px;
+    border: 0;
+    border-bottom: 1px solid currentColor;
+    background: none;
+    color: inherit;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  #our-story-page .nl-submit:disabled {
+    cursor: default;
+    opacity: .58;
+  }
+
+  #our-story-page .nl-msg {
+    display: none;
+    margin: 10px 0 0;
+    font-size: 14px;
+  }
+
+  #our-story-page .nl-msg.ok {
+    color: #2e7d32;
+  }
+
+  #our-story-page .nl-msg.err {
+    color: #b00020;
+  }
+
+  #our-story-page .subscription-note {
+    margin-top: 13px;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  #our-story-page .freebie-copy {
+    max-width: 700px;
+  }
+
+  #our-story-page .story-link {
+    display: inline-block;
+    margin-top: 4px;
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+  }
+
+  #our-story-page .story-link:hover,
+  #our-story-page .story-link:focus-visible {
+    opacity: .62;
+  }
+
+  #our-story-page .hp {
+    position: absolute;
+    left: -5000px;
+  }
+
+  @media (max-width: 760px) {
+    #our-story-page {
+      width: min(calc(100% - 40px), 820px);
+      padding: 42px 0 80px;
+    }
+
+    #our-story-page .page-title {
+      margin-bottom: 36px;
+    }
+
+    #our-story-page .story-divider {
+      margin: 48px auto;
+    }
+
+    #our-story-page .story-section h2 {
+      font-size: 20px;
+    }
+  }
+</style>
+
+<article id="our-story-page">
+  <section class="story-intro" aria-labelledby="our-story-title">
+    <h1 id="our-story-title" class="page-title">OUR STORY</h1>
+
+    <p>Hello friends 👋, we are FZ Studio — an architectural designer and an artist, currently based in London, UK.</p>
+
+    <p>I paint slow watercolours about light, quiet corners of nature, and the small moments that help us come back to ourselves.</p>
+
+    <p>My work grows out of two lifelong habits: looking closely at the world, and listening closely to myself.</p>
+
+    <p>Architecture taught me to love clear structure, calm spaces and careful lines. Painting allows me to soften those lines — to let light, colour and the small movements of water speak for themselves.</p>
+
+    <p>I am drawn to scenes where the world feels still, but full of hidden life. Through watercolour I explore this <em>Inner Light</em>: the moments when we pause, notice, and begin to feel at home with ourselves again.</p>
+
+    <p>FZ Studio is made for people who are thoughtful and a little tired of noise — people who want a gentler rhythm and a quiet visual space to return to.</p>
+
+    <div class="platform-thread">
+      <p>Across different platforms, FZ Studio follows one quiet thread:</p>
+      <ul class="platform-list">
+        <li>On this website, the <strong>Gallery</strong> holds the finished body of work, <strong>Art Prints</strong> offers selected reproductions, and <strong>Studio Materials</strong> shares a small selection of materials used in the practice.</li>
+        <li>On YouTube, I share slow “paint with me” sessions and observation studies from the studio.</li>
+        <li>On Substack, I write reflections and practice journals about painting, attention and the quieter moments behind the work.</li>
+      </ul>
+    </div>
+
+    <p style="margin-top:30px;">Whether you are here to look, watch, read, or bring a piece of this world into your home, I hope FZ Studio can offer you a small pocket of light and stillness in your day.</p>
+  </section>
+
+  <hr class="story-divider">
+
+  <section id="newsletter" class="story-section" aria-labelledby="newsletter-title">
+    <h2 id="newsletter-title">NEW RELEASES &amp; MORE</h2>
+    <p class="signup-note">Sign up for occasional notes from FZ Studio — new art releases, studio updates and ideas from the practice.</p>
+
+    <form
+      id="nl-form-ourstory"
+      class="nl-wrap"
+      action="https://script.google.com/macros/s/AKfycbyb_Btzc-7c2qLxAMSk9AVmzQJ9jpzEDhAoeBpHJt6ccQyPz5gP8Co-P1QPqON0zWqjug/exec"
+      method="post"
+      accept-charset="UTF-8"
+      novalidate
+    >
+      <input class="nl-input" type="email" name="email" placeholder="Email Address" required aria-describedby="nl-msg-ourstory">
+      <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off">
+      <input type="hidden" name="source" value="ourstory_newsletter">
+      <input type="hidden" name="page" value="/our-story/">
+      <input type="hidden" name="ref" value="">
+      <input type="hidden" name="ua" value="">
+      <input type="hidden" name="token" value="">
+
+      <button class="nl-submit" type="submit" aria-label="Sign up">Sign up</button>
+      <div id="nl-msg-ourstory" class="nl-msg" aria-live="polite"></div>
+
+      <p class="subscription-note">By subscribing you agree to receive emails from FZ Studio. You can unsubscribe anytime.</p>
+    </form>
+  </section>
+
+  <hr class="story-divider">
+
+  <section id="freebie" class="story-section" aria-labelledby="freebie-title">
+    <h2 id="freebie-title">FREEBIE: WATERCOLOUR TIPS (PDF)</h2>
+
+    <p class="freebie-copy">
+      A small two-page set for creating a calmer painting rhythm:
+      an <em>Artist Table Layout</em> and a <em>Watercolour Swatch Card Kit</em>.
+      They are simple on purpose — printable, repeatable and easy to return to.
+      Think of them as a quiet framework for your table: clear space, useful structure,
+      and room to notice colour.
+    </p>
+
+    <p>
+      <a
+        class="story-link"
+        href="https://fzstudiouk.substack.com/p/open-your-morning-like-a-painting"
+        target="_blank"
+        rel="noopener noreferrer"
+      >Read the introduction to this Freebie on Substack →</a>
+    </p>
+
+    <h3>Get the free PDF via subscription</h3>
+    <p class="signup-note">Leave your email below — we’ll include the download in your next welcome/send-out.</p>
+
+    <form
+      id="nl-form-freebie"
+      class="nl-wrap"
+      action="https://script.google.com/macros/s/AKfycbyb_Btzc-7c2qLxAMSk9AVmzQJ9jpzEDhAoeBpHJt6ccQyPz5gP8Co-P1QPqON0zWqjug/exec"
+      method="post"
+      accept-charset="UTF-8"
+      novalidate
+    >
+      <input class="nl-input" type="email" name="email" placeholder="Email Address" required aria-describedby="nl-msg-freebie">
+      <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off">
+      <input type="hidden" name="source" value="ourstory_freebie_section">
+
+      <button class="nl-submit" type="submit" aria-label="Sign up">Sign up</button>
+      <p id="nl-msg-freebie" class="nl-msg" role="status" aria-live="polite"></p>
+
+      <p class="subscription-note">By subscribing you agree to receive emails from FZ Studio. You can unsubscribe anytime.</p>
+    </form>
+  </section>
+</article>
+
+<script>
+(function () {
+  function wire(formId, msgId) {
+    const f = document.getElementById(formId);
+    const m = document.getElementById(msgId);
+    if (!f) return;
+
+    if (f.dataset.nlBound === '1') return;
+    f.dataset.nlBound = '1';
+
+    const btn = f.querySelector('button[type="submit"]');
+    if (btn && !btn.dataset.label) {
+      btn.dataset.label = (btn.textContent || '').trim() || 'Sign up';
+    }
+
+    const iframeId = `nl_iframe_${formId}`;
+    let iframe = document.getElementById(iframeId);
+
+    if (!iframe) {
+      iframe = document.createElement('iframe');
+      iframe.id = iframeId;
+      iframe.name = iframeId;
+      iframe.style.display = 'none';
+      iframe.setAttribute('aria-hidden', 'true');
+      document.body.appendChild(iframe);
+    }
+
+    let pending = false;
+
+    const hideMsg = () => {
+      if (!m) return;
+      m.className = 'nl-msg';
+      m.style.display = 'none';
+      m.textContent = '';
+    };
+
+    const showSending = () => {
+      if (!btn) return;
+      btn.style.display = '';
+      btn.disabled = true;
+      btn.textContent = 'Sending...';
+    };
+
+    const showThanks = () => {
+      if (btn) {
+        btn.disabled = false;
+        btn.style.display = 'none';
+        btn.textContent = btn.dataset.label || 'Sign up';
+      }
+
+      if (m) {
+        m.className = 'nl-msg ok';
+        m.style.display = 'block';
+        m.textContent = 'Thanks! Your email has been added.';
+      }
+
+      f._nlTimer = setTimeout(() => {
+        hideMsg();
+
+        if (btn) {
+          btn.style.display = '';
+          btn.textContent = btn.dataset.label || 'Sign up';
+        }
+
+        f._nlTimer = null;
+      }, 3000);
+    };
+
+    const showError = () => {
+      if (btn) {
+        btn.disabled = false;
+        btn.style.display = '';
+        btn.textContent = btn.dataset.label || 'Sign up';
+      }
+
+      if (m) {
+        m.className = 'nl-msg err';
+        m.style.display = 'block';
+        m.textContent = 'Something went wrong. Please try again.';
+      }
+
+      f._nlTimer = setTimeout(() => {
+        hideMsg();
+        if (btn) btn.textContent = btn.dataset.label || 'Sign up';
+        f._nlTimer = null;
+      }, 3000);
+    };
+
+    iframe.addEventListener('load', () => {
+      if (!pending) return;
+      pending = false;
+
+      if (f._nlTimeout) {
+        clearTimeout(f._nlTimeout);
+        f._nlTimeout = null;
+      }
+
+      if (f._nlTimer) {
+        clearTimeout(f._nlTimer);
+        f._nlTimer = null;
+      }
+
+      try { f.reset(); } catch (e) {}
+
+      const emailEl = f.querySelector('input[name="email"]');
+      if (emailEl) {
+        emailEl.value = '';
+        emailEl.blur();
+      }
+
+      showThanks();
+    });
+
+    f.addEventListener('submit', (e) => {
+      e.preventDefault();
+      e.stopImmediatePropagation();
+
+      if (f._nlTimer) {
+        clearTimeout(f._nlTimer);
+        f._nlTimer = null;
+      }
+
+      if (f._nlTimeout) {
+        clearTimeout(f._nlTimeout);
+        f._nlTimeout = null;
+      }
+
+      hideMsg();
+
+      const setIfEmpty = (name, val) => {
+        const el = f.querySelector(`[name="${name}"]`);
+        if (el && !el.value) el.value = val;
+      };
+
+      setIfEmpty('ua', navigator.userAgent || '');
+      setIfEmpty('ref', document.referrer || '');
+      setIfEmpty('token', `${Date.now()}-${Math.random().toString(36).slice(2, 10)}`);
+
+      showSending();
+      pending = true;
+
+      const prevTarget = f.getAttribute('target');
+      f.setAttribute('target', iframeId);
+
+      f._nlTimeout = setTimeout(() => {
+        if (!pending) return;
+        pending = false;
+        f._nlTimeout = null;
+        showError();
+      }, 8000);
+
+      try {
+        f.submit();
+      } catch (err) {
+        pending = false;
+
+        if (f._nlTimeout) {
+          clearTimeout(f._nlTimeout);
+          f._nlTimeout = null;
+        }
+
+        showError();
+      } finally {
+        setTimeout(() => {
+          if (prevTarget) f.setAttribute('target', prevTarget);
+          else f.removeAttribute('target');
+        }, 0);
+      }
+    }, true);
+  }
+
+  const ref = document.querySelector('#nl-form-ourstory input[name="ref"]');
+  if (ref) ref.value = document.referrer || '';
+
+  const ua = document.querySelector('#nl-form-ourstory input[name="ua"]');
+  if (ua) ua.value = navigator.userAgent || '';
+
+  wire('nl-form-ourstory', 'nl-msg-ourstory');
+  wire('nl-form-freebie', 'nl-msg-freebie');
+})();
+</script>
