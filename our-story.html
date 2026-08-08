@@ -5,10 +5,12 @@ permalink: /our-story/
 ---
 
 <style>
+  /* Match the original Our Story page proportions */
   #our-story-page {
+    width: calc(100% - 32px);
     max-width: 920px;
     margin: 0 auto;
-    padding: 10px 16px 100px;
+    padding: 8px 0 80px;
     text-align: center;
   }
 
@@ -17,42 +19,51 @@ permalink: /our-story/
     margin: 0 auto;
   }
 
+  /* Original-style body copy: regular, mid-grey, compact */
   #our-story-page p {
-    margin: 0 auto 18px;
-    font-size: 18px;
-    font-weight: 500;
+    margin: 0 auto 12px;
+    font-size: 16px;
+    font-weight: 400;
     line-height: 1.9;
-    color: #777;
+    color: #767676;
   }
 
   #our-story-page .platform-thread {
-    margin-top: 30px;
+    margin-top: 24px;
   }
 
   #our-story-page .platform-thread p {
-    margin-bottom: 10px;
+    margin-bottom: 8px;
   }
 
   #our-story-page .platform-list {
-    max-width: 880px;
-    margin: 18px auto 0;
+    max-width: 920px;
+    margin: 14px auto 0;
     padding: 0;
     list-style: none;
   }
 
   #our-story-page .platform-list li {
-    margin: 0 0 12px;
-    font-size: 18px;
-    font-weight: 500;
-    line-height: 1.85;
-    color: #777;
+    margin: 0 0 8px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.9;
+    color: #767676;
+  }
+
+  #our-story-page .platform-list strong {
+    font-weight: 400;
+  }
+
+  #our-story-page em {
+    color: inherit;
   }
 
   #our-story-page .story-divider {
-    width: 100%;
-    margin: 62px auto;
+    max-width: 920px;
+    margin: 28px auto;
     border: 0;
-    border-top: 1px solid var(--line);
+    border-top: 1px solid #eee;
   }
 
   #our-story-page .story-section {
@@ -60,60 +71,61 @@ permalink: /our-story/
     margin: 0 auto;
   }
 
+  /* Headings stay clearly above the grey body copy, like the original */
   #our-story-page .story-section h2 {
-    margin: 0 0 18px;
-    font-size: 30px;
-    font-weight: 500;
+    margin: 0 0 12px;
+    font-size: 24px;
+    font-weight: 400;
     line-height: 1.3;
-    letter-spacing: .01em;
+    letter-spacing: 0;
     color: #1f1f1f;
   }
 
   #our-story-page .story-section h3 {
-    margin: 32px 0 12px;
+    margin: 12px 0 8px;
     font-size: 18px;
-    font-weight: 500;
+    font-weight: 400;
     line-height: 1.4;
     color: #555;
   }
 
   #our-story-page .signup-note {
     max-width: 880px;
-    color: #777;
+    color: #767676;
   }
 
   #our-story-page .nl-wrap {
     max-width: 540px;
-    margin: 30px auto 0;
+    margin: 18px auto 0;
   }
 
   #our-story-page .nl-input {
     width: 100%;
     height: 52px;
     padding: 0 16px;
-    border: 1px solid #d9d9d9;
+    border: 1px solid #ddd;
     border-radius: 0;
     background: #fff;
-    color: #777;
-    font-size: 18px;
-    font-weight: 500;
+    color: #767676;
+    font-size: 16px;
+    font-weight: 400;
     box-sizing: border-box;
     outline: none;
   }
 
   #our-story-page .nl-input:focus {
-    border-color: #777;
+    border-color: #999;
   }
 
   #our-story-page .nl-submit {
-    margin: 13px 0 4px;
-    padding: 4px 1px;
+    margin: 8px 0 2px;
+    padding: 4px 2px;
     border: 0;
-    border-bottom: 1px solid currentColor;
+    border-bottom: 1px solid #222;
     background: none;
-    color: #777;
-    font-size: 18px;
-    font-weight: 500;
+    color: #767676;
+    font-size: 16px;
+    font-weight: 400;
     line-height: 1;
     cursor: pointer;
   }
@@ -125,8 +137,8 @@ permalink: /our-story/
 
   #our-story-page .nl-msg {
     display: none;
-    margin: 10px 0 0;
-    font-size: 14px;
+    margin: 6px 0 0;
+    font-size: 15px;
   }
 
   #our-story-page .nl-msg.ok {
@@ -138,20 +150,21 @@ permalink: /our-story/
   }
 
   #our-story-page .subscription-note {
-    margin-top: 13px;
-    color: #777;
-    font-size: 16px;
-    font-weight: 500;
+    margin-top: 10px;
+    color: #767676;
+    font-size: 15px;
+    font-weight: 400;
     line-height: 1.7;
   }
 
   #our-story-page .freebie-copy {
-    max-width: 700px;
+    max-width: 880px;
   }
 
   #our-story-page .story-link {
     display: inline-block;
     margin-top: 4px;
+    color: #767676;
     text-decoration: none;
     border-bottom: 1px solid currentColor;
   }
@@ -168,48 +181,45 @@ permalink: /our-story/
 
   @media (max-width: 760px) {
     #our-story-page {
-      width: auto;
-      padding: 8px 20px 80px;
-    }
-
-    #our-story-page .story-divider {
-      margin: 48px auto;
-    }
-
-    #our-story-page .story-section h2 {
-      font-size: 26px;
+      width: calc(100% - 32px);
+      padding: 8px 0 64px;
     }
 
     #our-story-page p,
     #our-story-page .platform-list li {
-      font-size: 17px;
+      font-size: 16px;
+    }
+
+    #our-story-page .story-section h2 {
+      font-size: 22px;
     }
   }
 </style>
 
 <article id="our-story-page">
-  <section class="story-intro" aria-label="Our Story">    <p>Hello friends 👋, we are FZ Studio — an architectural designer and an artist, currently based in London, UK.</p>
+  <section class="story-intro" aria-label="Our Story">
+    <p>Hello friends 👋, we are FZ Studio, an architectural designer and an artist, currently based in London, UK.</p>
 
-    <p>I paint slow watercolours about light, quiet corners of nature, and the small moments that help us come back to ourselves.</p>
+    <p>I paint slow watercolours about light, quiet corners of nature, the small moments that help us come back to ourselves.</p>
 
     <p>My work grows out of two lifelong habits: looking closely at the world, and listening closely to myself.</p>
 
-    <p>Architecture taught me to love clear structure, calm spaces and careful lines. Painting allows me to soften those lines — to let light, colour and the small movements of water speak for themselves.</p>
+    <p>Architecture taught me to love clear structure, calm spaces and careful lines. Painting allows me to soften those lines – to let light, colour and small movements of water speak for themselves.</p>
 
-    <p>I am drawn to scenes where the world feels still, but full of hidden life. Through watercolour I explore this <em>Inner Light</em>: the moments when we pause, notice, and begin to feel at home with ourselves again.</p>
+    <p>I’m drawn to scenes where the world feels still, but full of hidden life.Through watercolour I explore this inner light: the moments when we pause, breathe, and begin to feel at home with ourselves again.</p>
 
-    <p>FZ Studio is made for people who are thoughtful and a little tired of noise — people who want a gentler rhythm and a quiet visual space to return to.</p>
+    <p>FZ Studio is built for people who are thoughtful and a little tired of noise – people who want a gentler rhythm, and a quiet visual space to return to.</p>
 
     <div class="platform-thread">
       <p>Across different platforms, FZ Studio follows one quiet thread:</p>
       <ul class="platform-list">
-        <li>On this website, the <strong>Gallery</strong> holds the finished body of work, <strong>Art Prints</strong> offers selected reproductions, and <strong>Studio Materials</strong> shares a small selection of materials used in the practice.</li>
-        <li>On YouTube, I share slow “paint with me” sessions and observation studies from the studio.</li>
-        <li>On Substack, I write reflections and practice journals about painting, attention and the quieter moments behind the work.</li>
+        <li>– on this website, the Gallery holds the finished body of work, Art Prints offers selected reproductions, and Studio Materials shares a small selection of materials used in the practice</li>
+        <li>– on YouTube, I share slow “paint with me” sessions and realistic studies from the studio</li>
+        <li>– on Substack, I write reflections and practice journals about what these moments mean to me</li>
       </ul>
     </div>
 
-    <p style="margin-top:30px;">Whether you are here to look, watch, read, or bring a piece of this world into your home, I hope FZ Studio can offer you a small pocket of light and stillness in your day.</p>
+    <p style="margin-top:24px;">Whether you are here to watch, to read, or to bring a piece of this world into your home, I hope my work can offer you a small pocket of light and stillness in your day.</p>
   </section>
 
   <hr class="story-divider">
