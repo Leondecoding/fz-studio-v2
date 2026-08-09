@@ -4,9 +4,229 @@ title: Gallery
 permalink: /gallery/
 ---
 
-<section class="page-shell">
-  <h1 class="page-title">GALLERY</h1>
-  <div class="page-placeholder">
-    <p>Gallery will be a pure presentation space for original works. No prices, stock status, cart controls or PayPal purchase actions will appear here.</p>
+<style>
+  #gallery-page {
+    max-width: 1540px;
+    margin: 0 auto;
+    padding: 34px 28px 72px;
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 34px;
+    align-items: start;
+  }
+
+  .gallery-item {
+    margin: 0;
+  }
+
+  .gallery-frame {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border: 1px solid #e7e7e7;
+    border-radius: 10px;
+    background: #fff;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    cursor: zoom-in;
+  }
+
+  .gallery-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+
+  .gallery-placeholder {
+    width: 100%;
+    height: 100%;
+    background: #f7f7f5;
+  }
+
+  .gallery-item figcaption {
+    margin-top: 12px;
+    text-align: left;
+  }
+
+  .gallery-title {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #222;
+  }
+
+
+  .gallery-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 28px;
+    background: rgba(255, 255, 255, 0.96);
+  }
+
+  .gallery-lightbox.is-open {
+    display: flex;
+  }
+
+  .gallery-lightbox-content {
+    max-width: min(92vw, 1400px);
+    max-height: 88vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .gallery-lightbox-content img {
+    max-width: 100%;
+    max-height: 88vh;
+    width: auto;
+    height: auto;
+    display: block;
+  }
+
+  .gallery-lightbox-placeholder {
+    width: min(82vw, 1100px);
+    height: min(78vh, 820px);
+    background: #f7f7f5;
+  }
+
+  .gallery-lightbox-close {
+    position: fixed;
+    top: 20px;
+    right: 24px;
+    border: 0;
+    background: transparent;
+    padding: 8px;
+    font: inherit;
+    font-size: 30px;
+    font-weight: 300;
+    line-height: 1;
+    color: #222;
+    cursor: pointer;
+  }
+
+  body.gallery-lightbox-open {
+    overflow: hidden;
+  }
+
+  @media (max-width: 960px) {
+    #gallery-page {
+      padding: 28px 22px 64px;
+    }
+
+    .gallery-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 30px;
+    }
+  }
+
+  @media (max-width: 620px) {
+    #gallery-page {
+      padding: 22px 18px 52px;
+    }
+
+    .gallery-grid {
+      grid-template-columns: 1fr;
+      gap: 34px;
+    }
+  }
+</style>
+
+<main id="gallery-page">
+  <div class="gallery-grid">
+    <figure class="gallery-item">
+      <button class="gallery-frame gallery-open" type="button" aria-label="Open Artwork I">
+        <div class="gallery-placeholder" aria-label="Artwork placeholder"></div>
+      </button>
+      <figcaption>
+        <p class="gallery-title">Artwork I</p>
+      </figcaption>
+    </figure>
+
+    <figure class="gallery-item">
+      <button class="gallery-frame gallery-open" type="button" aria-label="Open Artwork II">
+        <div class="gallery-placeholder" aria-label="Artwork placeholder"></div>
+      </button>
+      <figcaption>
+        <p class="gallery-title">Artwork II</p>
+      </figcaption>
+    </figure>
+
+    <figure class="gallery-item">
+      <button class="gallery-frame gallery-open" type="button" aria-label="Open Artwork III">
+        <div class="gallery-placeholder" aria-label="Artwork placeholder"></div>
+      </button>
+      <figcaption>
+        <p class="gallery-title">Artwork III</p>
+      </figcaption>
+    </figure>
   </div>
-</section>
+</main>
+
+
+<div class="gallery-lightbox" id="gallery-lightbox" aria-hidden="true">
+  <button class="gallery-lightbox-close" type="button" aria-label="Close image">×</button>
+  <div class="gallery-lightbox-content"></div>
+</div>
+
+<script>
+  (() => {
+    const lightbox = document.getElementById('gallery-lightbox');
+    const content = lightbox.querySelector('.gallery-lightbox-content');
+    const closeButton = lightbox.querySelector('.gallery-lightbox-close');
+
+    function openLightbox(source) {
+      content.innerHTML = '';
+
+      const image = source.querySelector('img');
+      if (image) {
+        const largeImage = document.createElement('img');
+        largeImage.src = image.src;
+        largeImage.alt = image.alt || '';
+        content.appendChild(largeImage);
+      } else {
+        const placeholder = document.createElement('div');
+        placeholder.className = 'gallery-lightbox-placeholder';
+        content.appendChild(placeholder);
+      }
+
+      lightbox.classList.add('is-open');
+      lightbox.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('gallery-lightbox-open');
+      closeButton.focus();
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('is-open');
+      lightbox.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('gallery-lightbox-open');
+      content.innerHTML = '';
+    }
+
+    document.querySelectorAll('.gallery-open').forEach((item) => {
+      item.addEventListener('click', () => openLightbox(item));
+    });
+
+    closeButton.addEventListener('click', closeLightbox);
+
+    lightbox.addEventListener('click', (event) => {
+      if (event.target === lightbox) closeLightbox();
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && lightbox.classList.contains('is-open')) {
+        closeLightbox();
+      }
+    });
+  })();
+</script>
