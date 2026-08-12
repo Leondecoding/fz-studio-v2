@@ -11,7 +11,7 @@ permalink: /art-prints/
     padding:34px 28px 80px;
   }
 
-  /* ===== LIST VIEW ===== */
+  /* ===== ART PRINTS LIST ===== */
   .print-grid{
     display:grid;
     grid-template-columns:repeat(3,minmax(0,1fr));
@@ -26,47 +26,39 @@ permalink: /art-prints/
   .print-thumb{
     width:100%;
     aspect-ratio:1/1;
-    border:1px solid #e8e8e8;
+    border:1px solid #e7e7e7;
     border-radius:10px;
-    background:#fff;
+    background:#f7f7f5;
     overflow:hidden;
-    display:flex;
-    align-items:center;
-    justify-content:center;
   }
 
   .print-thumb img{
     width:100%;
     height:100%;
-    object-fit:contain;
+    object-fit:cover;
     display:block;
   }
 
-  .placeholder-thumb{
-    width:100%;
-    height:100%;
-    background:#f7f7f5;
-  }
-
-  .print-meta{
+  .print-info{
     display:flex;
     align-items:baseline;
     justify-content:space-between;
-    gap:16px;
+    gap:18px;
     margin-top:12px;
   }
 
-  .print-meta p{
+  .print-title,
+  .print-price{
     margin:0;
     font-size:16px;
-    line-height:1.5;
     font-weight:400;
+    line-height:1.5;
   }
 
-  .print-meta .title{ color:#222; }
-  .print-meta .price{ color:#666; white-space:nowrap; }
+  .print-title{color:#222}
+  .print-price{color:#666;white-space:nowrap}
 
-  /* ===== DETAIL VIEW ===== */
+  /* ===== PRODUCT DETAIL ===== */
   .product-view[hidden],
   .print-grid[hidden]{
     display:none;
@@ -84,109 +76,53 @@ permalink: /art-prints/
   }
 
   .product-layout{
+    max-width:1210px;
+    margin:36px auto 0;
     display:grid;
-    grid-template-columns:minmax(0,1fr) 420px;
-    gap:72px;
-    align-items:center;
-    max-width:1320px;
-    margin:0 auto;
-    min-height:72vh;
+    grid-template-columns:minmax(0,655px) minmax(320px,400px);
+    gap:110px;
+    align-items:start;
   }
 
-  .product-art-stage{
-    width:min(100%, 760px);
+  /* This is the ONLY left-side frame.
+     Your square JPG will fill this whole area. */
+  .product-image-slot{
+    width:100%;
     aspect-ratio:1/1;
-    margin:0 auto;
-    background:#e9e9e7;
-    border-radius:4px;
-    position:relative;
+    background:#e8e8e6;
     overflow:hidden;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-  }
-
-  .product-art-stage::before{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:
-      linear-gradient(115deg,
-        rgba(255,255,255,0) 18%,
-        rgba(255,255,255,0.42) 29%,
-        rgba(255,255,255,0.10) 36%,
-        rgba(255,255,255,0) 44%
-      );
-    background-size:100% 100%;
-    pointer-events:none;
-  }
-
-  .product-frame{
-    width:66%;
-    aspect-ratio:1/1;
-    background:#fff;
-    box-shadow:0 16px 24px rgba(0,0,0,.16);
-    padding:4.8%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    position:relative;
-    z-index:1;
-  }
-
-  .product-frame::before{
-    content:"";
-    position:absolute;
-    inset:-14px;
-    border:12px solid #5b361e;
-    box-shadow:
-      inset 0 0 0 1px rgba(255,255,255,.1),
-      0 4px 8px rgba(0,0,0,.12);
-    pointer-events:none;
-  }
-
-  .product-frame img{
-    width:100%;
-    height:100%;
-    object-fit:contain;
-    display:block;
     cursor:zoom-in;
-    background:#fff;
   }
 
-  .product-frame-placeholder{
+  .product-image-slot img{
     width:100%;
     height:100%;
-    background:#fafafa;
+    object-fit:cover;
+    display:block;
   }
 
   .product-copy{
-    max-width:420px;
+    padding-top:4px;
   }
 
   .product-copy h1{
     margin:0 0 12px;
-    font-size:30px;
-    line-height:1.2;
-    font-weight:600;
-    color:#1d1d1d;
+    font-size:28px;
+    font-weight:400;
+    line-height:1.25;
+    color:#111;
   }
 
   .product-price{
-    margin:0 0 6px;
+    margin:0 0 30px;
     font-size:18px;
-    color:#333;
-  }
-
-  .tax-note{
-    margin:0 0 22px;
-    font-size:15px;
-    color:#666;
+    font-weight:400;
+    color:#555;
   }
 
   .size-label{
     display:block;
-    margin-bottom:10px;
+    margin:0 0 10px;
     font-size:14px;
     color:#666;
   }
@@ -194,138 +130,148 @@ permalink: /art-prints/
   .size-options{
     display:flex;
     gap:10px;
-    margin-bottom:24px;
+    margin-bottom:28px;
   }
 
   .size-options button{
     min-width:62px;
     height:38px;
-    padding:0 16px;
-    border:1px solid #a9a9a9;
+    padding:0 15px;
+    border:1px solid #aaa;
     border-radius:999px;
     background:#fff;
     color:#222;
     font:inherit;
     font-size:14px;
+    font-weight:400;
     cursor:pointer;
   }
 
   .size-options button.is-selected{
-    background:#111;
     border-color:#111;
+    background:#111;
     color:#fff;
   }
 
-  .paypal-stack{
-    display:flex;
-    flex-direction:column;
-    gap:12px;
-    margin-bottom:26px;
+  .paypal-area{
+    margin:0 0 26px;
   }
 
-  .paypal-button{
+  .paypal-placeholder{
     width:100%;
-    min-height:54px;
-    border:1px solid #d7d7d7;
-    border-radius:14px;
-    background:#f2f2f2;
-    color:#111;
+    min-height:48px;
+    border:1px solid #111;
+    border-radius:8px;
+    background:#111;
+    color:#fff;
     font:inherit;
-    font-size:16px;
-    font-weight:600;
-    display:flex;
-    align-items:center;
-    justify-content:center;
+    font-weight:400;
     cursor:not-allowed;
+    opacity:.55;
+  }
+
+  .paypal-note{
+    margin:10px 0 0;
+    font-size:12px;
+    line-height:1.5;
+    color:#888;
   }
 
   .product-description{
+    margin-top:30px;
+    padding-top:24px;
+    border-top:1px solid #eee;
+    color:#555;
     font-size:15px;
-    line-height:1.7;
-    color:#4f4f4f;
+    line-height:1.75;
   }
 
   .product-description p{
     margin:0 0 12px;
   }
 
-  /* ===== LIGHTBOX ===== */
-  .lightbox[hidden]{
+  /* ===== FULL-PAGE IMAGE VIEW ===== */
+  .image-lightbox[hidden]{
     display:none;
   }
 
-  .lightbox{
+  .image-lightbox{
     position:fixed;
     inset:0;
-    background:rgba(0,0,0,.78);
     z-index:9999;
+    background:#fff;
     display:flex;
     align-items:center;
     justify-content:center;
-    padding:30px;
+    padding:28px;
   }
 
-  .lightbox-inner{
-    max-width:min(92vw, 1100px);
-    max-height:90vh;
-    position:relative;
-  }
-
-  .lightbox img{
-    max-width:100%;
-    max-height:90vh;
+  .image-lightbox img{
+    max-width:94vw;
+    max-height:92vh;
+    width:auto;
+    height:auto;
     display:block;
-    background:#fff;
+    object-fit:contain;
   }
 
-  .lightbox-close{
-    position:absolute;
-    top:-8px;
-    right:-8px;
-    width:38px;
-    height:38px;
+  .image-lightbox-close{
+    position:fixed;
+    top:18px;
+    right:22px;
+    width:42px;
+    height:42px;
     border:0;
-    border-radius:50%;
-    background:#fff;
-    color:#111;
-    font-size:22px;
+    background:transparent;
+    color:#222;
+    font:inherit;
+    font-size:30px;
+    font-weight:300;
+    line-height:1;
     cursor:pointer;
   }
 
   @media(max-width:1100px){
     .product-layout{
+      max-width:760px;
       grid-template-columns:1fr;
-      gap:34px;
-      min-height:auto;
+      gap:36px;
     }
 
     .product-copy{
-      max-width:760px;
-      margin:0 auto;
       width:100%;
+      max-width:655px;
+      margin:0 auto;
     }
   }
 
-  @media(max-width:760px){
-    #art-prints-page{
-      padding:24px 18px 64px;
+  @media(max-width:960px){
+    #art-prints-page{padding:28px 22px 64px}
+
+    .print-grid{
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:30px;
     }
+  }
+
+  @media(max-width:620px){
+    #art-prints-page{padding:22px 18px 52px}
 
     .print-grid{
       grid-template-columns:1fr;
-      gap:30px;
+      gap:34px;
     }
 
-    .product-art-stage{
-      width:100%;
-    }
-
-    .product-frame{
-      width:72%;
+    .product-layout{
+      margin-top:18px;
     }
 
     .product-copy h1{
-      font-size:26px;
+      font-size:24px;
+    }
+
+    .image-lightbox{
+      padding:18px;
     }
   }
 </style>
@@ -338,21 +284,20 @@ permalink: /art-prints/
     <button id="product-back" class="product-back" type="button">← Back to Art Prints</button>
 
     <div class="product-layout">
-      <div class="product-art-stage">
-        <div class="product-frame" id="product-frame"></div>
-      </div>
+      <div id="product-image-slot" class="product-image-slot"
+           role="button" tabindex="0" aria-label="Open large image"></div>
 
       <div class="product-copy">
         <h1 id="product-title"></h1>
         <p id="product-price" class="product-price"></p>
-        <p class="tax-note">Taxes included.</p>
 
         <span class="size-label">Size</span>
         <div id="size-options" class="size-options"></div>
 
-        <div class="paypal-stack">
-          <button class="paypal-button" type="button" disabled>Pay via PayPal</button>
-          <button class="paypal-button" type="button" disabled>Add to Bag</button>
+        <div class="paypal-area">
+          <!-- Replace this with the real PayPal Shopping Cart button later. -->
+          <button class="paypal-placeholder" type="button" disabled>Add to Bag — PayPal connection pending</button>
+          <p class="paypal-note">PayPal Shopping Cart will be connected here.</p>
         </div>
 
         <div id="product-description" class="product-description"></div>
@@ -360,11 +305,10 @@ permalink: /art-prints/
     </div>
   </section>
 
-  <div id="lightbox" class="lightbox" hidden>
-    <div class="lightbox-inner">
-      <button id="lightbox-close" class="lightbox-close" type="button" aria-label="Close">×</button>
-      <img id="lightbox-image" src="" alt="">
-    </div>
+  <div id="image-lightbox" class="image-lightbox" hidden>
+    <button id="image-lightbox-close" class="image-lightbox-close"
+            type="button" aria-label="Close image">×</button>
+    <img id="image-lightbox-img" src="" alt="">
   </div>
 
 </main>
@@ -373,87 +317,77 @@ permalink: /art-prints/
   const prints = [
     {
       id: "butterfly-1",
-      title: "Butterfly-1.jpg",
+      title: "Butterfly-1",
       price: "£25",
       image: "",
       sizes: ["A5", "A4"],
-      description: [
-        "Fine art print on archival paper (Hahnemühle German Etching, 310gsm). Signed in the corner."
-      ]
+      description: "Fine art print from an original FZ Studio watercolour."
     },
     {
       id: "butterfly-2",
-      title: "Butterfly-2.jpg",
+      title: "Butterfly-2",
       price: "£25",
       image: "",
       sizes: ["A5", "A4"],
-      description: [
-        "Fine art print on archival paper (Hahnemühle German Etching, 310gsm). Signed in the corner."
-      ]
+      description: "Fine art print from an original FZ Studio watercolour."
     },
     {
       id: "dawn-1",
-      title: "Dawn 1.jpg",
+      title: "Dawn 1",
       price: "£25",
       image: "",
       sizes: ["A5", "A4"],
-      description: [
-        "Fine art print on archival paper (Hahnemühle German Etching, 310gsm). Signed in the corner."
-      ]
+      description: "Fine art print from an original FZ Studio watercolour."
     }
   ];
 
   const grid = document.getElementById("print-grid");
   const productView = document.getElementById("product-view");
-  const productFrame = document.getElementById("product-frame");
+  const productImageSlot = document.getElementById("product-image-slot");
   const productTitle = document.getElementById("product-title");
   const productPrice = document.getElementById("product-price");
-  const productDescription = document.getElementById("product-description");
   const sizeOptions = document.getElementById("size-options");
+  const productDescription = document.getElementById("product-description");
   const backButton = document.getElementById("product-back");
 
-  const lightbox = document.getElementById("lightbox");
-  const lightboxImage = document.getElementById("lightbox-image");
-  const lightboxClose = document.getElementById("lightbox-close");
+  const lightbox = document.getElementById("image-lightbox");
+  const lightboxImg = document.getElementById("image-lightbox-img");
+  const lightboxClose = document.getElementById("image-lightbox-close");
 
-  function imageMarkup(item, placeholderClass){
+  let currentProduct = null;
+
+  function imageMarkup(item){
     return item.image
       ? `<img src="${item.image}" alt="${item.title}">`
-      : `<div class="${placeholderClass}"></div>`;
+      : "";
   }
 
   function renderGrid(){
     grid.innerHTML = prints.map(item => `
       <figure class="print-card" data-product="${item.id}" tabindex="0">
-        <div class="print-thumb">
-          ${imageMarkup(item, "placeholder-thumb")}
-        </div>
-        <figcaption class="print-meta">
-          <p class="title">${item.title}</p>
-          <p class="price">${item.price}</p>
+        <div class="print-thumb">${imageMarkup(item)}</div>
+        <figcaption class="print-info">
+          <p class="print-title">${item.title}</p>
+          <p class="print-price">${item.price}</p>
         </figcaption>
       </figure>
     `).join("");
-  }
-
-  function renderDescription(item){
-    return item.description.map(text => `<p>${text}</p>`).join("");
   }
 
   function openProduct(id, updateHash = true){
     const item = prints.find(print => print.id === id);
     if(!item) return;
 
-    productFrame.innerHTML = item.image
-      ? `<img src="${item.image}" alt="${item.title}" data-lightbox-src="${item.image}">`
-      : `<div class="product-frame-placeholder"></div>`;
-
+    currentProduct = item;
+    productImageSlot.innerHTML = imageMarkup(item);
     productTitle.textContent = item.title;
     productPrice.textContent = item.price;
-    productDescription.innerHTML = renderDescription(item);
+    productDescription.innerHTML = `<p>${item.description}</p>`;
 
     sizeOptions.innerHTML = item.sizes.map((size, index) => `
-      <button type="button" class="${index === 0 ? 'is-selected' : ''}" data-size="${size}">
+      <button type="button"
+              class="${index === 0 ? "is-selected" : ""}"
+              data-size="${size}">
         ${size}
       </button>
     `).join("");
@@ -468,37 +402,40 @@ permalink: /art-prints/
   }
 
   function showGrid(updateHash = true){
+    currentProduct = null;
     productView.hidden = true;
     grid.hidden = false;
-    closeLightbox();
+    closeLargeImage();
 
     if(updateHash){
       history.pushState({}, "", window.location.pathname);
     }
   }
 
-  function openLightbox(src, alt){
-    if(!src) return;
-    lightboxImage.src = src;
-    lightboxImage.alt = alt || "";
+  function openLargeImage(){
+    if(!currentProduct || !currentProduct.image) return;
+
+    lightboxImg.src = currentProduct.image;
+    lightboxImg.alt = currentProduct.title;
     lightbox.hidden = false;
     document.body.style.overflow = "hidden";
   }
 
-  function closeLightbox(){
+  function closeLargeImage(){
     lightbox.hidden = true;
-    lightboxImage.src = "";
-    lightboxImage.alt = "";
+    lightboxImg.src = "";
+    lightboxImg.alt = "";
     document.body.style.overflow = "";
   }
 
-  grid.addEventListener("click", (event) => {
+  grid.addEventListener("click", event => {
     const card = event.target.closest(".print-card");
     if(card) openProduct(card.dataset.product);
   });
 
-  grid.addEventListener("keydown", (event) => {
+  grid.addEventListener("keydown", event => {
     if(event.key !== "Enter" && event.key !== " ") return;
+
     const card = event.target.closest(".print-card");
     if(card){
       event.preventDefault();
@@ -506,36 +443,44 @@ permalink: /art-prints/
     }
   });
 
-  productFrame.addEventListener("click", (event) => {
-    const image = event.target.closest("img[data-lightbox-src]");
-    if(image){
-      openLightbox(image.dataset.lightboxSrc, image.alt);
+  productImageSlot.addEventListener("click", openLargeImage);
+
+  productImageSlot.addEventListener("keydown", event => {
+    if(event.key === "Enter" || event.key === " "){
+      event.preventDefault();
+      openLargeImage();
     }
   });
 
-  sizeOptions.addEventListener("click", (event) => {
+  sizeOptions.addEventListener("click", event => {
     const button = event.target.closest("button[data-size]");
     if(!button) return;
-    sizeOptions.querySelectorAll("button").forEach(btn => btn.classList.remove("is-selected"));
+
+    sizeOptions.querySelectorAll("button")
+      .forEach(item => item.classList.remove("is-selected"));
+
     button.classList.add("is-selected");
   });
 
   backButton.addEventListener("click", () => showGrid());
-  lightboxClose.addEventListener("click", closeLightbox);
+  lightboxClose.addEventListener("click", closeLargeImage);
 
-  lightbox.addEventListener("click", (event) => {
-    if(event.target === lightbox) closeLightbox();
+  lightbox.addEventListener("click", event => {
+    if(event.target === lightbox) closeLargeImage();
   });
 
-  window.addEventListener("keydown", (event) => {
-    if(event.key === "Escape") closeLightbox();
+  document.addEventListener("keydown", event => {
+    if(event.key === "Escape" && !lightbox.hidden){
+      closeLargeImage();
+    }
   });
 
   window.addEventListener("popstate", () => {
     const id = window.location.hash.slice(1);
+
     if(prints.some(item => item.id === id)){
       openProduct(id, false);
-    } else {
+    }else{
       showGrid(false);
     }
   });
