@@ -65,21 +65,21 @@ permalink: /art-prints/
   }
 
   .product-layout{
-    width:min(1020px,100%);
+    width:min(1090px,100%);
     min-height:calc(100vh - 185px);
     margin:0 auto;
-    padding-top:58px;
+    padding-top:18px;
     box-sizing:border-box;
     display:grid;
-    grid-template-columns:minmax(0,560px) minmax(320px,390px);
-    gap:70px;
+    grid-template-columns:minmax(0,600px) minmax(320px,390px);
+    gap:100px;
     align-items:start;
   }
 
   /* Your finished square JPG fills this entire square.
      Nothing is added inside it by the website. */
   .product-image-slot{
-    width:min(560px, calc(100vh - 255px));
+    width:min(600px, calc(100vh - 215px));
     max-width:100%;
     aspect-ratio:1/1;
     justify-self:end;
@@ -183,7 +183,7 @@ permalink: /art-prints/
     margin:0 0 12px;
   }
 
-  /* ===== TRUE FULL-SCREEN LIGHTBOX ===== */
+  /* ===== LIGHTBOX — OLD SITE GEOMETRY ===== */
   .image-lightbox[hidden]{
     display:none;
   }
@@ -194,24 +194,24 @@ permalink: /art-prints/
     width:100vw;
     height:100vh;
     z-index:99999;
-    background:#fff;
-    overflow-y:auto;
-    overflow-x:hidden;
-    cursor:zoom-out;
+    background:rgba(0,0,0,.80);
+    overflow:hidden;
   }
 
   .image-lightbox-content{
-    width:100%;
-    min-height:100%;
-    padding:120px 20px 64px;
+    position:absolute;
+    top:40px;
+    right:60px;
+    bottom:40px;
+    left:60px;
+    padding:0;
+    overflow:auto;
+    background:#fff;
     box-sizing:border-box;
-    display:flex;
-    align-items:flex-start;
-    justify-content:center;
   }
 
   .image-lightbox-content img{
-    width:calc(100vw - 40px);
+    width:100%;
     max-width:none;
     max-height:none;
     height:auto;
@@ -220,23 +220,23 @@ permalink: /art-prints/
   }
 
   .image-lightbox-placeholder{
-    width:min(88vw,760px);
+    width:100%;
     aspect-ratio:1/1;
     background:#e8e8e6;
   }
 
   .image-lightbox-close{
     position:fixed;
-    top:18px;
-    right:22px;
+    top:36px;
+    right:16px;
     z-index:100000;
-    width:42px;
-    height:42px;
+    width:38px;
+    height:38px;
     border:0;
     background:transparent;
-    color:#222;
+    color:#fff;
     font:inherit;
-    font-size:30px;
+    font-size:32px;
     font-weight:300;
     line-height:1;
     cursor:pointer;
@@ -252,12 +252,12 @@ permalink: /art-prints/
     }
 
     .product-image-slot{
-      width:min(560px,80vw);
+      width:min(600px,80vw);
       justify-self:center;
     }
 
     .product-copy{
-      max-width:560px;
+      max-width:600px;
       margin:0 auto;
     }
   }
@@ -288,11 +288,15 @@ permalink: /art-prints/
     }
 
     .image-lightbox-content{
-      padding:92px 10px 42px;
+      top:24px;
+      right:16px;
+      bottom:24px;
+      left:16px;
     }
 
-    .image-lightbox-content img{
-      width:calc(100vw - 20px);
+    .image-lightbox-close{
+      top:20px;
+      right:2px;
     }
   }
 </style>
