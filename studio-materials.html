@@ -8,7 +8,7 @@ permalink: /studio-materials/
   #studio-materials-page{
     max-width:1180px;
     margin:0 auto;
-    padding:34px 22px 80px;
+    padding:14px 22px 80px;
   }
 
   .materials-overview{
@@ -21,13 +21,11 @@ permalink: /studio-materials/
   }
 
   .materials-panel{
-    min-height:360px;
-    padding:42px 38px;
-    border:1px solid #eee;
+    padding:16px 34px 8px;
     box-sizing:border-box;
     display:flex;
     flex-direction:column;
-    justify-content:center;
+    justify-content:flex-start;
     text-align:center;
   }
 
@@ -55,7 +53,7 @@ permalink: /studio-materials/
 
   .materials-rule{
     max-width:1100px;
-    margin:46px auto;
+    margin:28px auto 30px;
     border:0;
     border-top:1px solid #eee;
   }
@@ -77,18 +75,94 @@ permalink: /studio-materials/
     align-items:start;
   }
 
-  .product-image{
+  .product-gallery{
     width:100%;
     aspect-ratio:1/1;
-    background:#eeeeec;
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    grid-template-rows:2fr 1fr;
+    gap:6px;
+    background:#fff;
     overflow:hidden;
   }
 
-  .product-image img{
+  .product-gallery-item{
+    border:0;
+    padding:0;
+    margin:0;
+    background:#eeeeec;
+    overflow:hidden;
+    cursor:zoom-in;
+  }
+
+  .product-gallery-item:first-child{
+    grid-column:1 / -1;
+  }
+
+  .product-gallery-item img{
     width:100%;
     height:100%;
     object-fit:cover;
     display:block;
+  }
+
+  .product-gallery-placeholder{
+    width:100%;
+    height:100%;
+    background:#eeeeec;
+  }
+
+  .materials-lightbox[hidden]{
+    display:none;
+  }
+
+  .materials-lightbox{
+    position:fixed;
+    inset:0;
+    z-index:99999;
+    background:rgba(255,255,255,.96);
+    overflow:auto;
+  }
+
+  .materials-lightbox-inner{
+    min-height:100vh;
+    padding:80px 60px;
+    box-sizing:border-box;
+    display:flex;
+    align-items:flex-start;
+    justify-content:center;
+  }
+
+  .materials-lightbox-inner img{
+    width:auto;
+    max-width:calc(100vw - 120px);
+    height:auto;
+    max-height:none;
+    display:block;
+  }
+
+  .materials-lightbox-placeholder{
+    width:min(1100px,calc(100vw - 120px));
+    aspect-ratio:1/1;
+    background:#eeeeec;
+  }
+
+  .materials-lightbox-close{
+    position:fixed;
+    top:28px;
+    right:28px;
+    z-index:100000;
+    width:38px;
+    height:38px;
+    padding:0;
+    border:0;
+    background:transparent;
+    color:#222;
+    font:inherit;
+    font-size:32px;
+    font-weight:300;
+    line-height:1;
+    cursor:pointer;
   }
 
   .product-info{
@@ -171,8 +245,7 @@ permalink: /studio-materials/
     }
 
     .materials-panel{
-      min-height:auto;
-      padding:34px 28px;
+      padding:18px 24px 6px;
     }
 
     .product-layout{
@@ -186,6 +259,23 @@ permalink: /studio-materials/
   @media(max-width:620px){
     #studio-materials-page{
       padding:26px 18px 60px;
+    }
+
+    .materials-lightbox-inner{
+      padding:64px 16px 32px;
+    }
+
+    .materials-lightbox-inner img{
+      max-width:calc(100vw - 32px);
+    }
+
+    .materials-lightbox-placeholder{
+      width:calc(100vw - 32px);
+    }
+
+    .materials-lightbox-close{
+      top:18px;
+      right:12px;
     }
 
     .materials-rule{
@@ -209,10 +299,11 @@ permalink: /studio-materials/
 
       <p>
         Amalfi watercolour paper has become an important part of my studio practice.
-        Amatruda paper follows a centuries-old Amalfi papermaking tradition. Its
-        100% cotton-rag fibre comes from a history of making paper from textile
-        offcuts rather than wood pulp, while the mill itself is associated with the
-        water-powered papermaking culture of the Canneto valley.
+        Handmade in Italy by Amatruda, the paper follows a centuries-old Amalfi
+        papermaking tradition. Its 100% cotton-rag fibre comes from a history of
+        making paper from textile offcuts rather than wood pulp, while the mill
+        itself is associated with the water-powered papermaking culture of the
+        Canneto valley.
       </p>
 
       <p>
@@ -255,22 +346,38 @@ permalink: /studio-materials/
     <h2>Try the Paper</h2>
 
     <div class="product-layout">
-      <div class="product-image" aria-label="Amalfi paper sample pack image"></div>
+      <div class="product-gallery" aria-label="Amalfi paper sample pack images">
+        <button class="product-gallery-item" type="button" aria-label="Open main product image">
+          <span class="product-gallery-placeholder"></span>
+        </button>
+
+        <button class="product-gallery-item" type="button" aria-label="Open product detail image 1">
+          <span class="product-gallery-placeholder"></span>
+        </button>
+
+        <button class="product-gallery-item" type="button" aria-label="Open product detail image 2">
+          <span class="product-gallery-placeholder"></span>
+        </button>
+
+        <button class="product-gallery-item" type="button" aria-label="Open product detail image 3">
+          <span class="product-gallery-placeholder"></span>
+        </button>
+      </div>
 
       <div class="product-info">
         <h3>Amalfi Watercolour Paper Sample Pack</h3>
         <p class="product-price">£—</p>
 
         <p class="product-summary">
-          A small introduction to the paper I currently paint on, prepared so you
-          can test it with your own watercolours, water ratio and brushes before
-          committing to a larger quantity.
+          A small introduction to the handmade Italian watercolour paper I currently
+          paint on, prepared so you can test it with your own watercolours, water
+          ratio and brushes before committing to a larger quantity.
         </p>
 
         <div class="paper-facts">
           <p>100% cotton-rag paper</p>
           <p>Natural gelatin sizing</p>
-          <p>Made by Amatruda in Amalfi, Italy</p>
+          <p>Handmade by Amatruda in Amalfi, Italy</p>
           <p>Not vegan</p>
         </div>
 
@@ -282,5 +389,71 @@ permalink: /studio-materials/
       </div>
     </div>
   </section>
+
+  <div class="materials-lightbox" id="materials-lightbox" hidden aria-hidden="true">
+    <button class="materials-lightbox-close" id="materials-lightbox-close" type="button" aria-label="Close image">×</button>
+    <div class="materials-lightbox-inner" id="materials-lightbox-inner"></div>
+  </div>
+
+<script>
+(function () {
+  const lightbox = document.getElementById('materials-lightbox');
+  const lightboxInner = document.getElementById('materials-lightbox-inner');
+  const closeButton = document.getElementById('materials-lightbox-close');
+  const galleryItems = document.querySelectorAll('.product-gallery-item');
+
+  function closeLightbox() {
+    lightbox.hidden = true;
+    lightbox.setAttribute('aria-hidden', 'true');
+    lightboxInner.replaceChildren();
+    document.body.style.overflow = '';
+  }
+
+  function openLightbox(item) {
+    lightboxInner.replaceChildren();
+
+    const sourceImage = item.querySelector('img');
+
+    if (sourceImage) {
+      const largeImage = document.createElement('img');
+      largeImage.src = sourceImage.src;
+      largeImage.alt = sourceImage.alt || '';
+      lightboxInner.appendChild(largeImage);
+    } else {
+      const placeholder = document.createElement('div');
+      placeholder.className = 'materials-lightbox-placeholder';
+      lightboxInner.appendChild(placeholder);
+    }
+
+    lightbox.hidden = false;
+    lightbox.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    lightbox.scrollTop = 0;
+  }
+
+  galleryItems.forEach(function (item) {
+    item.addEventListener('click', function () {
+      openLightbox(item);
+    });
+  });
+
+  closeButton.addEventListener('click', function (event) {
+    event.stopPropagation();
+    closeLightbox();
+  });
+
+  lightbox.addEventListener('click', function (event) {
+    if (event.target === lightbox || event.target === lightboxInner) {
+      closeLightbox();
+    }
+  });
+
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape' && !lightbox.hidden) {
+      closeLightbox();
+    }
+  });
+})();
+</script>
 
 </main>
