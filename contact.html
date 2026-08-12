@@ -4,9 +4,204 @@ title: Contact
 permalink: /contact/
 ---
 
-<section class="page-shell page-shell--reading">
-  <h1 class="page-title">CONTACT</h1>
-  <div class="page-placeholder">
-    <p>The contact form will be rebuilt later with reliable submission confirmation and a cleaner privacy flow. No old endpoint has been copied into V2.</p>
-  </div>
-</section>
+<style>
+  #contact-page{
+    max-width:1180px;
+    margin:0 auto;
+    padding:42px 22px 90px;
+  }
+
+  .contact-form{
+    width:100%;
+  }
+
+  .contact-row{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:34px;
+  }
+
+  .contact-field{
+    margin:0 0 28px;
+  }
+
+  .contact-field label{
+    display:block;
+    margin:0 0 10px;
+    font-size:16px;
+    font-weight:400;
+    line-height:1.4;
+    color:#333;
+  }
+
+  .contact-field input,
+  .contact-field textarea{
+    width:100%;
+    box-sizing:border-box;
+    border:1px solid #aaa;
+    border-radius:0;
+    background:#fff;
+    color:#222;
+    font:inherit;
+    font-size:16px;
+    font-weight:400;
+    outline:none;
+  }
+
+  .contact-field input{
+    height:66px;
+    padding:0 16px;
+  }
+
+  .contact-field textarea{
+    min-height:250px;
+    padding:16px;
+    resize:vertical;
+    line-height:1.6;
+  }
+
+  .contact-field input:focus,
+  .contact-field textarea:focus{
+    border-color:#555;
+  }
+
+  .contact-send{
+    min-width:160px;
+    height:58px;
+    padding:0 30px;
+    border:0;
+    border-radius:0;
+    background:#111;
+    color:#fff;
+    font:inherit;
+    font-size:17px;
+    font-weight:400;
+    cursor:pointer;
+  }
+
+  .contact-send:disabled{
+    opacity:.55;
+    cursor:default;
+  }
+
+  .contact-status{
+    min-height:24px;
+    margin:14px 0 0;
+    font-size:14px;
+    line-height:1.6;
+    color:#666;
+  }
+
+  .contact-hp{
+    position:absolute;
+    left:-5000px;
+    width:1px;
+    height:1px;
+    overflow:hidden;
+  }
+
+  .contact-silent-frame{
+    display:none;
+  }
+
+  @media(max-width:700px){
+    #contact-page{
+      padding:30px 18px 70px;
+    }
+
+    .contact-row{
+      grid-template-columns:1fr;
+      gap:0;
+    }
+
+    .contact-field input{
+      height:58px;
+    }
+
+    .contact-field textarea{
+      min-height:220px;
+    }
+  }
+</style>
+
+<main id="contact-page">
+  <form
+    id="contact-form"
+    class="contact-form"
+    action="PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE"
+    method="post"
+    target="contact-silent-frame"
+    accept-charset="UTF-8"
+  >
+    <div class="contact-row">
+      <div class="contact-field">
+        <label for="contact-name">Name</label>
+        <input id="contact-name" name="name" type="text" autocomplete="name">
+      </div>
+
+      <div class="contact-field">
+        <label for="contact-email">Email *</label>
+        <input id="contact-email" name="email" type="email" autocomplete="email" required>
+      </div>
+    </div>
+
+    <div class="contact-field">
+      <label for="contact-comment">Comment</label>
+      <textarea id="contact-comment" name="comment" required></textarea>
+    </div>
+
+    <div class="contact-hp" aria-hidden="true">
+      <label for="contact-company">Company</label>
+      <input id="contact-company" name="company" type="text" tabindex="-1" autocomplete="off">
+    </div>
+
+    <input type="hidden" name="source" value="fz_studio_contact">
+    <input type="hidden" name="page" value="/contact/">
+
+    <button id="contact-send" class="contact-send" type="submit">Send</button>
+    <p id="contact-status" class="contact-status" role="status" aria-live="polite"></p>
+  </form>
+
+  <iframe
+    id="contact-silent-frame"
+    name="contact-silent-frame"
+    class="contact-silent-frame"
+    title="Contact form response"
+  ></iframe>
+</main>
+
+<script>
+(function () {
+  const form = document.getElementById('contact-form');
+  const frame = document.getElementById('contact-silent-frame');
+  const button = document.getElementById('contact-send');
+  const status = document.getElementById('contact-status');
+
+  let waitingForResponse = false;
+
+  form.addEventListener('submit', function (event) {
+    const endpoint = form.getAttribute('action');
+
+    if (!endpoint || endpoint.includes('PASTE_YOUR_APPS_SCRIPT')) {
+      event.preventDefault();
+      status.textContent = 'Contact form setup is not finished yet.';
+      return;
+    }
+
+    waitingForResponse = true;
+    button.disabled = true;
+    button.textContent = 'Sending...';
+    status.textContent = '';
+  });
+
+  frame.addEventListener('load', function () {
+    if (!waitingForResponse) return;
+
+    waitingForResponse = false;
+    form.reset();
+    button.disabled = false;
+    button.textContent = 'Send';
+    status.textContent = 'Thank you — your message has been sent.';
+  });
+})();
+</script>
