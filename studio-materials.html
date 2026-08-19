@@ -198,10 +198,6 @@ permalink: /studio-materials/
     width:100%;
   }
 
-  .paypal-view-cart{
-    width:auto;
-  }
-
   .buy-note{
     margin:2px 0 0;
     font-size:12px;
@@ -351,12 +347,7 @@ permalink: /studio-materials/
           <p>Not vegan</p>
         </div>
 
-        <div class="buy-stack">
-          <div class="paypal-view-cart">
-            <paypal-cart-button data-id="pp-view-cart-materials"></paypal-cart-button>
-          </div>
-          <p class="buy-note">Maximum 3 sample packs per order.</p>
-        </div>
+        <p class="buy-note">Maximum 3 sample packs per order.</p>
       </div>
     </div>
   </section>
@@ -429,7 +420,6 @@ permalink: /studio-materials/
 
 <script>
   cartPaypal.AddToCart({ id: "G82R98F63KZ98" });
-  cartPaypal.Cart({ id: "pp-view-cart-materials" });
 </script>
 
 </main>
