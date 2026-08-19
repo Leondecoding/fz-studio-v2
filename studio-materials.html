@@ -216,19 +216,13 @@ permalink: /studio-materials/
     gap:10px;
   }
 
-  .buy-placeholder{
+  .paypal-buy-button{
+    width:100%;
+    max-width:320px;
+  }
+
+  .paypal-view-cart{
     width:auto;
-    min-width:190px;
-    min-height:46px;
-    padding:0 24px;
-    border:1px solid #d7d7d7;
-    border-radius:10px;
-    background:#f2f2f2;
-    color:#222;
-    font:inherit;
-    font-size:15px;
-    font-weight:400;
-    cursor:not-allowed;
   }
 
   .buy-note{
@@ -289,6 +283,8 @@ permalink: /studio-materials/
     }
   }
 </style>
+
+<script src="https://www.paypalobjects.com/ncp/cart/cart.js" data-merchant-id="UCYNPKFEQ2FLN"></script>
 
 <main id="studio-materials-page">
 
@@ -366,7 +362,7 @@ permalink: /studio-materials/
 
       <div class="product-info">
         <h3>Amalfi Watercolour Paper Sample Pack</h3>
-        <p class="product-price">£—</p>
+        <p class="product-price">£9.90</p>
 
         <p class="product-summary">
           A small introduction to the handmade Italian watercolour paper I currently
@@ -375,16 +371,22 @@ permalink: /studio-materials/
         </p>
 
         <div class="paper-facts">
+          <p>3 A4 sheets · 340 gsm</p>
           <p>100% cotton-rag paper</p>
           <p>Natural gelatin sizing</p>
           <p>Handmade by Amatruda in Amalfi, Italy</p>
+          <p>UK delivery included</p>
           <p>Not vegan</p>
         </div>
 
         <div class="buy-stack">
-          <button class="buy-placeholder" type="button" disabled>Pay via PayPal</button>
-          <button class="buy-placeholder" type="button" disabled>Add to Bag</button>
-          <p class="buy-note">Final pack contents, price and PayPal buttons can be added later.</p>
+          <div class="paypal-buy-button">
+            <paypal-add-to-cart-button data-id="G82R98F63KZ98"></paypal-add-to-cart-button>
+          </div>
+          <div class="paypal-view-cart">
+            <paypal-cart-button data-id="pp-view-cart-materials"></paypal-cart-button>
+          </div>
+          <p class="buy-note">UK delivery included. Maximum 3 sample packs per order.</p>
         </div>
       </div>
     </div>
@@ -454,6 +456,11 @@ permalink: /studio-materials/
     }
   });
 })();
+</script>
+
+<script>
+  cartPaypal.AddToCart({ id: "G82R98F63KZ98" });
+  cartPaypal.Cart({ id: "pp-view-cart-materials" });
 </script>
 
 </main>
