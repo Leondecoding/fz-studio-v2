@@ -157,7 +157,7 @@ img {
   top: 50%;
   right: 0;
   display: block;
-  transform: translateY(-50%) scale(.70);
+  transform: translateY(-50%) scale(.76);
   transform-origin: right center;
 }
 
@@ -314,7 +314,7 @@ img {
   }
 
   .paypal-bag-slot paypal-cart-button {
-    transform: translateY(-50%) scale(.64);
+    transform: translateY(-50%) scale(.68);
   }
 
   .nav-toggle {
