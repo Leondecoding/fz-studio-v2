@@ -12,7 +12,9 @@
     </nav>
 
     <div class="site-actions">
-      <paypal-cart-button data-id="pp-view-cart-header"></paypal-cart-button>
+      <div class="paypal-bag-slot" aria-label="Shopping bag">
+        <paypal-cart-button data-id="pp-view-cart-header"></paypal-cart-button>
+      </div>
       <script>
         cartPaypal.Cart({ id: "pp-view-cart-header" });
       </script>
