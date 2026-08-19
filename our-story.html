@@ -223,7 +223,7 @@ permalink: /our-story/
     <form
       id="nl-form-ourstory"
       class="nl-wrap"
-      action="https://script.google.com/macros/s/AKfycbyb_Btzc-7c2qLxAMSk9AVmzQJ9jpzEDhAoeBpHJt6ccQyPz5gP8Co-P1QPqON0zWqjug/exec"
+      action="PASTE_UNIFIED_APPS_SCRIPT_WEB_APP_URL_HERE"
       method="post"
       accept-charset="UTF-8"
       novalidate
@@ -271,7 +271,7 @@ permalink: /our-story/
     <form
       id="nl-form-freebie"
       class="nl-wrap"
-      action="https://script.google.com/macros/s/AKfycbyb_Btzc-7c2qLxAMSk9AVmzQJ9jpzEDhAoeBpHJt6ccQyPz5gP8Co-P1QPqON0zWqjug/exec"
+      action="PASTE_UNIFIED_APPS_SCRIPT_WEB_APP_URL_HERE"
       method="post"
       accept-charset="UTF-8"
       novalidate
@@ -279,6 +279,10 @@ permalink: /our-story/
       <input class="nl-input" type="email" name="email" placeholder="Email Address" required aria-describedby="nl-msg-freebie">
       <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off">
       <input type="hidden" name="source" value="ourstory_freebie_section">
+      <input type="hidden" name="page" value="/our-story/#freebie">
+      <input type="hidden" name="ref" value="">
+      <input type="hidden" name="ua" value="">
+      <input type="hidden" name="token" value="">
 
       <button class="nl-submit" type="submit" aria-label="Sign up">Sign up</button>
       <p id="nl-msg-freebie" class="nl-msg" role="status" aria-live="polite"></p>
@@ -290,22 +294,18 @@ permalink: /our-story/
 
 <script>
 (function () {
-  function wire(formId, msgId) {
-    const f = document.getElementById(formId);
-    const m = document.getElementById(msgId);
-    if (!f) return;
+  const endpointPlaceholder = 'PASTE_UNIFIED_APPS_SCRIPT_WEB_APP_URL_HERE';
 
-    if (f.dataset.nlBound === '1') return;
-    f.dataset.nlBound = '1';
+  function wire(formId, msgId, successText) {
+    const form = document.getElementById(formId);
+    const message = document.getElementById(msgId);
+    if (!form || form.dataset.formBound === '1') return;
+    form.dataset.formBound = '1';
 
-    const btn = f.querySelector('button[type="submit"]');
-    if (btn && !btn.dataset.label) {
-      btn.dataset.label = (btn.textContent || '').trim() || 'Sign up';
-    }
+    const button = form.querySelector('button[type="submit"]');
+    const iframeId = `fz_iframe_${formId}`;
 
-    const iframeId = `nl_iframe_${formId}`;
     let iframe = document.getElementById(iframeId);
-
     if (!iframe) {
       iframe = document.createElement('iframe');
       iframe.id = iframeId;
@@ -315,157 +315,100 @@ permalink: /our-story/
       document.body.appendChild(iframe);
     }
 
-    let pending = false;
+    let currentToken = '';
 
-    const hideMsg = () => {
-      if (!m) return;
-      m.className = 'nl-msg';
-      m.style.display = 'none';
-      m.textContent = '';
-    };
+    function setStatus(text, type) {
+      if (!message) return;
+      message.className = type ? `nl-msg ${type}` : 'nl-msg';
+      message.style.display = text ? 'block' : 'none';
+      message.textContent = text || '';
+    }
 
-    const showSending = () => {
-      if (!btn) return;
-      btn.style.display = '';
-      btn.disabled = true;
-      btn.textContent = 'Sending...';
-    };
+    function restoreButton() {
+      if (!button) return;
+      button.disabled = false;
+      button.style.display = '';
+      button.textContent = button.dataset.label || 'Sign up';
+    }
 
-    const showThanks = () => {
-      if (btn) {
-        btn.disabled = false;
-        btn.style.display = 'none';
-        btn.textContent = btn.dataset.label || 'Sign up';
+    if (button && !button.dataset.label) {
+      button.dataset.label = (button.textContent || '').trim() || 'Sign up';
+    }
+
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      const endpoint = form.getAttribute('action') || '';
+      if (!endpoint || endpoint.includes(endpointPlaceholder)) {
+        setStatus('Form setup is not finished yet.', 'err');
+        return;
       }
 
-      if (m) {
-        m.className = 'nl-msg ok';
-        m.style.display = 'block';
-        m.textContent = 'Thanks! Your email has been added.';
+      const email = form.querySelector('input[name="email"]');
+      if (!email || !email.value.trim()) {
+        setStatus('Please enter your email address.', 'err');
+        return;
       }
 
-      f._nlTimer = setTimeout(() => {
-        hideMsg();
+      currentToken = `${Date.now()}-${Math.random().toString(36).slice(2, 10)}`;
 
-        if (btn) {
-          btn.style.display = '';
-          btn.textContent = btn.dataset.label || 'Sign up';
-        }
-
-        f._nlTimer = null;
-      }, 3000);
-    };
-
-    const showError = () => {
-      if (btn) {
-        btn.disabled = false;
-        btn.style.display = '';
-        btn.textContent = btn.dataset.label || 'Sign up';
-      }
-
-      if (m) {
-        m.className = 'nl-msg err';
-        m.style.display = 'block';
-        m.textContent = 'Something went wrong. Please try again.';
-      }
-
-      f._nlTimer = setTimeout(() => {
-        hideMsg();
-        if (btn) btn.textContent = btn.dataset.label || 'Sign up';
-        f._nlTimer = null;
-      }, 3000);
-    };
-
-    iframe.addEventListener('load', () => {
-      if (!pending) return;
-      pending = false;
-
-      if (f._nlTimeout) {
-        clearTimeout(f._nlTimeout);
-        f._nlTimeout = null;
-      }
-
-      if (f._nlTimer) {
-        clearTimeout(f._nlTimer);
-        f._nlTimer = null;
-      }
-
-      try { f.reset(); } catch (e) {}
-
-      const emailEl = f.querySelector('input[name="email"]');
-      if (emailEl) {
-        emailEl.value = '';
-        emailEl.blur();
-      }
-
-      showThanks();
-    });
-
-    f.addEventListener('submit', (e) => {
-      e.preventDefault();
-      e.stopImmediatePropagation();
-
-      if (f._nlTimer) {
-        clearTimeout(f._nlTimer);
-        f._nlTimer = null;
-      }
-
-      if (f._nlTimeout) {
-        clearTimeout(f._nlTimeout);
-        f._nlTimeout = null;
-      }
-
-      hideMsg();
-
-      const setIfEmpty = (name, val) => {
-        const el = f.querySelector(`[name="${name}"]`);
-        if (el && !el.value) el.value = val;
+      const setValue = (name, value) => {
+        const input = form.querySelector(`[name="${name}"]`);
+        if (input) input.value = value;
       };
 
-      setIfEmpty('ua', navigator.userAgent || '');
-      setIfEmpty('ref', document.referrer || '');
-      setIfEmpty('token', `${Date.now()}-${Math.random().toString(36).slice(2, 10)}`);
+      setValue('token', currentToken);
+      setValue('ref', document.referrer || '');
+      setValue('ua', navigator.userAgent || '');
 
-      showSending();
-      pending = true;
-
-      const prevTarget = f.getAttribute('target');
-      f.setAttribute('target', iframeId);
-
-      f._nlTimeout = setTimeout(() => {
-        if (!pending) return;
-        pending = false;
-        f._nlTimeout = null;
-        showError();
-      }, 8000);
-
-      try {
-        f.submit();
-      } catch (err) {
-        pending = false;
-
-        if (f._nlTimeout) {
-          clearTimeout(f._nlTimeout);
-          f._nlTimeout = null;
-        }
-
-        showError();
-      } finally {
-        setTimeout(() => {
-          if (prevTarget) f.setAttribute('target', prevTarget);
-          else f.removeAttribute('target');
-        }, 0);
+      if (button) {
+        button.disabled = true;
+        button.style.display = '';
+        button.textContent = 'Sending...';
       }
-    }, true);
+      setStatus('', '');
+
+      form.setAttribute('target', iframeId);
+      form.submit();
+    });
+
+    window.addEventListener('message', function (event) {
+      const data = event.data;
+      if (!data || data.type !== 'fz-form-result') return;
+      if (!currentToken || data.token !== currentToken) return;
+
+      currentToken = '';
+
+      if (data.ok) {
+        form.reset();
+        if (button) {
+          button.disabled = false;
+          button.style.display = 'none';
+          button.textContent = button.dataset.label || 'Sign up';
+        }
+        setStatus(successText, 'ok');
+
+        setTimeout(function () {
+          setStatus('', '');
+          restoreButton();
+        }, 4000);
+      } else {
+        restoreButton();
+        setStatus('Something went wrong. Please try again.', 'err');
+      }
+    });
   }
 
-  const ref = document.querySelector('#nl-form-ourstory input[name="ref"]');
-  if (ref) ref.value = document.referrer || '';
+  wire(
+    'nl-form-ourstory',
+    'nl-msg-ourstory',
+    'Thanks! Please check your inbox for a confirmation from FZ Studio.'
+  );
 
-  const ua = document.querySelector('#nl-form-ourstory input[name="ua"]');
-  if (ua) ua.value = navigator.userAgent || '';
-
-  wire('nl-form-ourstory', 'nl-msg-ourstory');
-  wire('nl-form-freebie', 'nl-msg-freebie');
+  wire(
+    'nl-form-freebie',
+    'nl-msg-freebie',
+    'Thanks! Please check your inbox for your FZ Studio freebie.'
+  );
 })();
 </script>

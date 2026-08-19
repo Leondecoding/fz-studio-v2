@@ -128,7 +128,7 @@ permalink: /contact/
   <form
     id="contact-form"
     class="contact-form"
-    action="PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE"
+    action="PASTE_UNIFIED_APPS_SCRIPT_WEB_APP_URL_HERE"
     method="post"
     target="contact-silent-frame"
     accept-charset="UTF-8"
@@ -156,6 +156,7 @@ permalink: /contact/
     </div>
 
     <input type="hidden" name="source" value="fz_studio_contact">
+    <input type="hidden" name="token" value="">
     <input type="hidden" name="page" value="/contact/">
 
     <button id="contact-send" class="contact-send" type="submit">Send</button>
@@ -176,32 +177,48 @@ permalink: /contact/
   const frame = document.getElementById('contact-silent-frame');
   const button = document.getElementById('contact-send');
   const status = document.getElementById('contact-status');
+  const endpointPlaceholder = 'PASTE_UNIFIED_APPS_SCRIPT_WEB_APP_URL_HERE';
 
-  let waitingForResponse = false;
+  let currentToken = '';
 
   form.addEventListener('submit', function (event) {
-    const endpoint = form.getAttribute('action');
+    event.preventDefault();
 
-    if (!endpoint || endpoint.includes('PASTE_YOUR_APPS_SCRIPT')) {
-      event.preventDefault();
+    const endpoint = form.getAttribute('action') || '';
+    if (!endpoint || endpoint.includes(endpointPlaceholder)) {
       status.textContent = 'Contact form setup is not finished yet.';
       return;
     }
 
-    waitingForResponse = true;
+    if (!form.reportValidity()) return;
+
+    currentToken = `${Date.now()}-${Math.random().toString(36).slice(2, 10)}`;
+    const token = form.querySelector('input[name="token"]');
+    if (token) token.value = currentToken;
+
     button.disabled = true;
     button.textContent = 'Sending...';
     status.textContent = '';
+
+    form.setAttribute('target', frame.name);
+    form.submit();
   });
 
-  frame.addEventListener('load', function () {
-    if (!waitingForResponse) return;
+  window.addEventListener('message', function (event) {
+    const data = event.data;
+    if (!data || data.type !== 'fz-form-result') return;
+    if (!currentToken || data.token !== currentToken) return;
 
-    waitingForResponse = false;
-    form.reset();
+    currentToken = '';
     button.disabled = false;
     button.textContent = 'Send';
-    status.textContent = 'Thank you — your message has been sent.';
+
+    if (data.ok) {
+      form.reset();
+      status.textContent = 'Thank you — your message has been sent.';
+    } else {
+      status.textContent = 'Something went wrong. Please try again.';
+    }
   });
 })();
 </script>
