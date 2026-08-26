@@ -1,10 +1,10 @@
 title: FZ Studio
 description: An artist studio for watercolour, prints and selected studio materials.
-lang: en-GB
-locale: en_GB
-url: ""
+url: "https://leondecoding.github.io"
 baseurl: "/fz-studio-v2"
 permalink: pretty
+lang: en-GB
+locale: en_GB
 
 # V2 principle:
 # Keep all secrets out of this repository and out of browser JavaScript.
