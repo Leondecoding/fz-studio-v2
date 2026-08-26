@@ -101,86 +101,48 @@ permalink: /art-prints/
     padding-top:0;
   }
 
-  .product-copy h1{
-    margin:0 0 12px;
-    font-size:28px;
-    font-weight:400;
-    line-height:1.25;
-    color:#111;
+  .paypal-product{
+    width:100%;
+    margin:0 0 26px;
   }
 
-  .product-price{
-    margin:0 0 28px;
-    font-size:18px;
-    font-weight:400;
-    color:#555;
-  }
-
-  .size-label{
+  .paypal-product paypal-add-to-cart-button{
     display:block;
-    margin:0 0 10px;
-    font-size:14px;
+    width:100%;
+  }
+
+  .product-facts{
+    margin:0;
+    padding:22px 0;
+    border-top:1px solid #e9e9e9;
+    border-bottom:1px solid #e9e9e9;
     color:#666;
-  }
-
-  .size-options{
-    display:flex;
-    gap:10px;
-    margin-bottom:24px;
-  }
-
-  .size-options button{
-    min-width:62px;
-    height:38px;
-    padding:0 15px;
-    border:1px solid #aaa;
-    border-radius:999px;
-    background:#fff;
-    color:#222;
-    font:inherit;
     font-size:14px;
-    font-weight:400;
-    cursor:pointer;
+    line-height:1.65;
   }
 
-  .size-options button.is-selected{
-    border-color:#111;
-    background:#111;
-    color:#fff;
+  .product-facts p{
+    margin:0 0 5px;
   }
 
-  .buy-stack{
-    display:flex;
-    flex-direction:column;
-    align-items:flex-start;
-    gap:10px;
-    margin-bottom:26px;
-  }
-
-  .buy-placeholder{
-    width:auto;
-    min-width:190px;
-    min-height:48px;
-    padding:0 24px;
-    border:1px solid #d7d7d7;
-    border-radius:10px;
-    background:#f2f2f2;
-    color:#222;
-    font:inherit;
-    font-size:15px;
-    font-weight:400;
-    cursor:not-allowed;
+  .product-facts p:last-child{
+    margin-bottom:0;
   }
 
   .product-description{
-    margin-top:26px;
+    margin-top:24px;
     color:#555;
     font-size:15px;
-    line-height:1.7;
+    line-height:1.72;
   }
 
   .product-description p{
     margin:0 0 12px;
+  }
+
+  .product-description .edition-note{
+    color:#777;
+    font-size:13px;
   }
 
   /* ===== LIGHTBOX — OLD SITE GEOMETRY ===== */
@@ -283,10 +245,6 @@ permalink: /art-prints/
       width:100%;
     }
 
-    .product-copy h1{
-      font-size:24px;
-    }
-
     .image-lightbox-content{
       top:24px;
       right:16px;
@@ -315,18 +273,8 @@ permalink: /art-prints/
            aria-label="Open full-screen image"></div>
 
       <div class="product-copy">
-        <h1 id="product-title"></h1>
-        <p id="product-price" class="product-price"></p>
-
-        <span class="size-label">Size</span>
-        <div id="size-options" class="size-options"></div>
-
-        <div class="buy-stack">
-          <!-- Replace these two placeholders with the real PayPal buttons later. -->
-          <button class="buy-placeholder" type="button" disabled>Pay via PayPal</button>
-          <button class="buy-placeholder" type="button" disabled>Add to Bag</button>
-        </div>
-
+        <div id="paypal-product" class="paypal-product"></div>
+        <div id="product-facts" class="product-facts"></div>
         <div id="product-description" class="product-description"></div>
       </div>
 
@@ -344,43 +292,61 @@ permalink: /art-prints/
 </main>
 
 <script>
-  /* To add your JPG later, only fill in image: "...".
-     Example:
-     image: "{{ '/assets/images/butterfly-1.jpg' | relative_url }}"
+  /* RELEASE 01
+     Add the final product JPGs later by filling in each image value.
+     Suggested filenames are included for consistency and future SEO work.
   */
   const prints = [
     {
-      id: "butterfly-1",
-      title: "Butterfly-1",
-      price: "£25",
+      id: "peach-study",
+      title: "Peach Study",
+      price: "£35",
+      paypalId: "P45QLYZ5QEDX2",
       image: "",
-      sizes: ["A5", "A4"],
-      description: "Fine art print from an original FZ Studio watercolour."
+      suggestedImage: "peach-study-watercolour-fine-art-print.jpg",
+      alt: "Watercolour painting of a ripe red peach with green leaves on white paper",
+      description: "A watercolour study of a peach and its surrounding leaves, painted after a historical pomological illustration. Transparent washes, softened edges and shifts in colour move the image away from botanical documentation towards a quieter study of form, weight and ripeness.",
+      note: "Fine art giclée print from the original FZ Studio watercolour."
     },
     {
-      id: "butterfly-2",
-      title: "Butterfly-2",
-      price: "£25",
+      id: "toucan-in-bloom",
+      title: "Toucan in Bloom",
+      price: "£35",
+      paypalId: "JAJZCTY8T83RW",
       image: "",
-      sizes: ["A5", "A4"],
-      description: "Fine art print from an original FZ Studio watercolour."
+      suggestedImage: "toucan-in-bloom-watercolour-fine-art-print.jpg",
+      alt: "Colourful watercolour painting of a toucan surrounded by flower petals and green leaves",
+      description: "An original watercolour bringing together a brightly coloured toucan, leaves and a deep blue flower. The image grew from an interest in how natural forms can overlap, conceal and reveal one another through colour.",
+      note: "Fine art giclée print from an original FZ Studio watercolour."
     },
     {
-      id: "dawn-1",
-      title: "Dawn 1",
-      price: "£25",
+      id: "violet-bloom",
+      title: "Violet Bloom",
+      price: "£35",
+      paypalId: "27M72DF3AC6DN",
       image: "",
-      sizes: ["A5", "A4"],
-      description: "Fine art print from an original FZ Studio watercolour."
+      suggestedImage: "violet-bloom-botanical-watercolour-fine-art-print.jpg",
+      alt: "Loose botanical watercolour painting in violet, pink and blue-green washes",
+      description: "An original watercolour developed from observing the movement and structure of a flower. Soft violet, pink and blue-green washes allow the botanical form to move between recognition and abstraction.",
+      note: "Fine art giclée print from an original FZ Studio watercolour."
     }
+  ];
+
+  const printFacts = [
+    "10 × 12 in / 25 × 30 cm",
+    "315gsm Cold Press Watercolour Paper",
+    "Fine art giclée print",
+    "Unframed",
+    "Printed to order",
+    "Open edition",
+    "UK delivery included"
   ];
 
   const grid = document.getElementById("print-grid");
   const productView = document.getElementById("product-view");
   const productImageSlot = document.getElementById("product-image-slot");
-  const productTitle = document.getElementById("product-title");
-  const productPrice = document.getElementById("product-price");
-  const sizeOptions = document.getElementById("size-options");
+  const paypalProduct = document.getElementById("paypal-product");
+  const productFacts = document.getElementById("product-facts");
   const productDescription = document.getElementById("product-description");
 
   const lightbox = document.getElementById("image-lightbox");
@@ -389,7 +355,7 @@ permalink: /art-prints/
 
   function imageMarkup(item){
     return item.image
-      ? `<img src="${item.image}" alt="${item.title}">`
+      ? `<img src="${item.image}" alt="${item.alt}">`
       : "";
   }
 
@@ -410,17 +376,20 @@ permalink: /art-prints/
     if(!item) return;
 
     productImageSlot.innerHTML = imageMarkup(item);
-    productTitle.textContent = item.title;
-    productPrice.textContent = item.price;
-    productDescription.innerHTML = `<p>${item.description}</p>`;
 
-    sizeOptions.innerHTML = item.sizes.map((size, index) => `
-      <button type="button"
-              class="${index === 0 ? "is-selected" : ""}"
-              data-size="${size}">
-        ${size}
-      </button>
-    `).join("");
+    paypalProduct.innerHTML = `
+      <paypal-add-to-cart-button data-id="${item.paypalId}"></paypal-add-to-cart-button>
+    `;
+    cartPaypal.AddToCart({ id: item.paypalId });
+
+    productFacts.innerHTML = printFacts
+      .map(fact => `<p>${fact}</p>`)
+      .join("");
+
+    productDescription.innerHTML = `
+      <p>${item.description}</p>
+      <p class="edition-note">${item.note}</p>
+    `;
 
     grid.hidden = true;
     productView.hidden = false;
@@ -494,16 +463,6 @@ permalink: /art-prints/
       event.preventDefault();
       openLargeImage();
     }
-  });
-
-  sizeOptions.addEventListener("click", event => {
-    const button = event.target.closest("button[data-size]");
-    if(!button) return;
-
-    sizeOptions.querySelectorAll("button")
-      .forEach(item => item.classList.remove("is-selected"));
-
-    button.classList.add("is-selected");
   });
 
   lightboxClose.addEventListener("click", event => {
