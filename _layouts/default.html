@@ -10,8 +10,11 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
 
+      const analyticsConsent = localStorage.getItem('fzAnalyticsConsent');
+      const analyticsStorage = analyticsConsent === 'granted' ? 'granted' : 'denied';
+
       gtag('consent', 'default', {
-        'analytics_storage': 'denied',
+        'analytics_storage': analyticsStorage,
         'ad_storage': 'denied',
         'ad_user_data': 'denied',
         'ad_personalization': 'denied'
@@ -53,6 +56,70 @@
     {% endif %}
 
     <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+
+    <style>
+      .cookie-consent[hidden]{
+        display:none;
+      }
+
+      .cookie-consent{
+        position:fixed;
+        right:0;
+        bottom:0;
+        left:0;
+        z-index:100001;
+        padding:12px 22px;
+        box-sizing:border-box;
+        border-top:1px solid #e6e6e6;
+        background:rgba(255,255,255,.98);
+        color:#444;
+      }
+
+      .cookie-consent-inner{
+        width:min(1180px,100%);
+        margin:0 auto;
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        gap:24px;
+      }
+
+      .cookie-consent p{
+        margin:0;
+        font-size:13px;
+        line-height:1.5;
+      }
+
+      .cookie-consent-actions{
+        display:flex;
+        flex:0 0 auto;
+        gap:8px;
+      }
+
+      .cookie-consent button{
+        padding:7px 12px;
+        border:1px solid #bdbdbd;
+        border-radius:5px;
+        background:#fff;
+        color:#333;
+        font:inherit;
+        font-size:13px;
+        cursor:pointer;
+      }
+
+      @media(max-width:620px){
+        .cookie-consent{
+          padding:12px 14px;
+        }
+
+        .cookie-consent-inner{
+          align-items:flex-start;
+          flex-direction:column;
+          gap:10px;
+        }
+      }
+    </style>
+
     <script src="https://www.paypalobjects.com/ncp/cart/cart.js" data-merchant-id="UCYNPKFEQ2FLN"></script>
   </head>
   <body class="{% if page.body_class %}{{ page.body_class }}{% endif %}">
@@ -66,6 +133,53 @@
     {% unless page.hide_footer %}
       {% include footer.html %}
     {% endunless %}
+
+    <aside id="cookie-consent"
+           class="cookie-consent"
+           aria-label="Analytics preferences"
+           hidden>
+      <div class="cookie-consent-inner">
+        <p>We respect your privacy. Optional analytics help us understand how this website is used.</p>
+        <div class="cookie-consent-actions">
+          <button id="cookie-reject" type="button">No thanks</button>
+          <button id="cookie-accept" type="button">I'm OK</button>
+        </div>
+      </div>
+    </aside>
+
+    <script>
+      (function(){
+        const banner = document.getElementById('cookie-consent');
+        const acceptButton = document.getElementById('cookie-accept');
+        const rejectButton = document.getElementById('cookie-reject');
+        const savedConsent = localStorage.getItem('fzAnalyticsConsent');
+
+        function saveConsent(value){
+          localStorage.setItem('fzAnalyticsConsent', value);
+
+          gtag('consent', 'update', {
+            'analytics_storage': value,
+            'ad_storage': 'denied',
+            'ad_user_data': 'denied',
+            'ad_personalization': 'denied'
+          });
+
+          banner.hidden = true;
+        }
+
+        if(savedConsent !== 'granted' && savedConsent !== 'denied'){
+          banner.hidden = false;
+        }
+
+        acceptButton.addEventListener('click', function(){
+          saveConsent('granted');
+        });
+
+        rejectButton.addEventListener('click', function(){
+          saveConsent('denied');
+        });
+      })();
+    </script>
 
     <script src="{{ '/assets/js/navigation.js' | relative_url }}" defer></script>
   </body>
