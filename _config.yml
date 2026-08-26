@@ -1,5 +1,7 @@
 title: FZ Studio
 description: An artist studio for watercolour, prints and selected studio materials.
+lang: en-GB
+locale: en_GB
 url: ""
 baseurl: "/fz-studio-v2"
 permalink: pretty
