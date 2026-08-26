@@ -5,6 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="color-scheme" content="light">
 
+    <!-- Google Analytics 4: consent defaults -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied'
+      });
+    </script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VL9HGMPDN7"></script>
+    <script>
+      gtag('js', new Date());
+      gtag('config', 'G-VL9HGMPDN7');
+    </script>
+
     {% assign seo_title = page.seo_title | default: page.title %}
     {% assign seo_description = page.description | default: site.description %}
 
