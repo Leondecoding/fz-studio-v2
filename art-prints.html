@@ -431,7 +431,7 @@ permalink: /art-prints/
 
     const addToCartButton = document.getElementById(addToCartElementId);
     if(addToCartButton){
-      addToCartButton.addEventListener("add-item-success", () => {
+      addToCartButton.addEventListener("click", () => {
         trackAddToCart(item);
       });
     }
