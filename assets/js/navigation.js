@@ -1,12 +1,19 @@
 (() => {
   const toggle = document.getElementById("nav-toggle");
   const nav = document.getElementById("site-nav");
+  const header = document.querySelector(".site-header");
 
   if (toggle && nav) {
-    const closeNav = () => {
+    const closeNav = (returnFocus = false) => {
+      const wasOpen = nav.classList.contains("is-open");
+
       nav.classList.remove("is-open");
       toggle.setAttribute("aria-expanded", "false");
       toggle.setAttribute("aria-label", "Open menu");
+
+      if (returnFocus && wasOpen) {
+        toggle.focus();
+      }
     };
 
     toggle.addEventListener("click", () => {
@@ -16,11 +23,29 @@
     });
 
     nav.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", closeNav);
+      link.addEventListener("click", () => closeNav());
+    });
+
+    document.addEventListener("click", (event) => {
+      if (
+        nav.classList.contains("is-open") &&
+        header &&
+        !header.contains(event.target)
+      ) {
+        closeNav();
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && nav.classList.contains("is-open")) {
+        closeNav(true);
+      }
     });
 
     window.addEventListener("resize", () => {
-      if (window.innerWidth > 900) closeNav();
+      if (window.innerWidth > 900) {
+        closeNav();
+      }
     });
   }
 

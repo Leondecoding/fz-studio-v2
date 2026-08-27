@@ -277,18 +277,20 @@ img {
     grid-template-columns: auto 1fr auto;
     align-items: center;
     padding: var(--header-y) var(--header-x);
+    column-gap: 18px;
   }
 
   .site-nav {
     position: absolute;
-    top: 78px;
+    top: 100%;
     left: 0;
     right: 0;
+    z-index: 60;
     display: none;
     flex-direction: column;
     align-items: flex-start;
     gap: 0;
-    padding: 18px 20px 26px;
+    padding: 10px var(--header-x) 18px;
     background: #fff;
     border-top: 1px solid var(--line);
     border-bottom: 1px solid var(--line);
@@ -300,7 +302,7 @@ img {
 
   .site-nav a {
     width: 100%;
-    padding: 13px 0;
+    padding: 12px 0;
     font-size: 16px;
   }
 
@@ -310,7 +312,13 @@ img {
 
   .site-actions {
     padding-top: 0;
-    gap: 6px;
+    gap: 4px;
+  }
+
+  .paypal-bag-slot {
+    width: 34px;
+    height: 34px;
+    flex-basis: 34px;
   }
 
   .paypal-bag-slot paypal-cart-button {
@@ -319,6 +327,9 @@ img {
 
   .nav-toggle {
     display: block;
+    width: 34px;
+    height: 34px;
+    padding: 5px;
   }
 
   .nav-toggle[aria-expanded="true"] span:nth-child(1) {
@@ -352,6 +363,39 @@ img {
 }
 
 @media (max-width: 520px) {
+  :root {
+    --header-x: 16px;
+    --header-y: 15px;
+    --page-side: 18px;
+    --logo-height: 40px;
+  }
+
+  .site-header__inner {
+    min-height: 70px;
+    column-gap: 12px;
+  }
+
+  .site-nav a {
+    padding: 11px 0;
+    font-size: 15px;
+  }
+
+  .paypal-bag-slot {
+    width: 32px;
+    height: 32px;
+    flex-basis: 32px;
+  }
+
+  .paypal-bag-slot paypal-cart-button {
+    transform: translateY(-50%) scale(.64);
+  }
+
+  .nav-toggle {
+    width: 32px;
+    height: 32px;
+    padding: 4px;
+  }
+
   .home-hero__stage {
     width: 94vw;
   }
