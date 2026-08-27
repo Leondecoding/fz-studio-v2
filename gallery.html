@@ -1,6 +1,8 @@
 ---
 layout: default
 title: Gallery
+seo_title: Original Watercolour Gallery | FZ Studio
+description: Explore original FZ Studio watercolour works, with studies of botanical form, colour, light and abstraction.
 permalink: /gallery/
 ---
 
@@ -142,7 +144,7 @@ permalink: /gallery/
   }
 </style>
 
-<main id="gallery-page">
+<div id="gallery-page">
   <div class="gallery-grid">
     <figure class="gallery-item">
       <button class="gallery-frame gallery-open" type="button" aria-label="Open Artwork I">
@@ -171,7 +173,7 @@ permalink: /gallery/
       </figcaption>
     </figure>
   </div>
-</main>
+</div>
 
 
 <div class="gallery-lightbox" id="gallery-lightbox" aria-hidden="true">
@@ -184,6 +186,20 @@ permalink: /gallery/
     const lightbox = document.getElementById('gallery-lightbox');
     const content = lightbox.querySelector('.gallery-lightbox-content');
     const closeButton = lightbox.querySelector('.gallery-lightbox-close');
+
+    function trackGallerySelection(source) {
+      if (typeof gtag !== 'function') return;
+
+      const figure = source.closest('.gallery-item');
+      const title = figure?.querySelector('.gallery-title')?.textContent?.trim();
+
+      if (!title) return;
+
+      gtag('event', 'select_content', {
+        content_type: 'gallery_artwork',
+        content_id: title
+      });
+    }
 
     function openLightbox(source) {
       content.innerHTML = '';
@@ -203,6 +219,9 @@ permalink: /gallery/
       lightbox.classList.add('is-open');
       lightbox.setAttribute('aria-hidden', 'false');
       document.body.classList.add('gallery-lightbox-open');
+
+      trackGallerySelection(source);
+
       closeButton.focus();
     }
 
