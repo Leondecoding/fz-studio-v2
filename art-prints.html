@@ -309,6 +309,7 @@ permalink: /art-prints/
       id: "peach-study",
       title: "Peach Study",
       price: "£35",
+      analyticsPrice: 35,
       paypalId: "P45QLYZ5QEDX2",
       image: "",
       suggestedImage: "peach-study-watercolour-fine-art-print.jpg",
@@ -320,6 +321,7 @@ permalink: /art-prints/
       id: "toucan-in-bloom",
       title: "Toucan in Bloom",
       price: "£35",
+      analyticsPrice: 35,
       paypalId: "JAJZCTY8T83RW",
       image: "",
       suggestedImage: "toucan-in-bloom-watercolour-fine-art-print.jpg",
@@ -331,6 +333,7 @@ permalink: /art-prints/
       id: "violet-bloom",
       title: "Violet Bloom",
       price: "£35",
+      analyticsPrice: 35,
       paypalId: "27M72DF3AC6DN",
       image: "",
       suggestedImage: "violet-bloom-botanical-watercolour-fine-art-print.jpg",
@@ -361,6 +364,37 @@ permalink: /art-prints/
   const lightboxContent = document.getElementById("image-lightbox-content");
   const lightboxClose = document.getElementById("image-lightbox-close");
 
+  function analyticsItem(item){
+    return {
+      item_id: item.id,
+      item_name: item.title,
+      item_brand: "FZ Studio",
+      item_category: "Art Prints",
+      item_variant: "10 × 12 in / 25 × 30 cm",
+      price: item.analyticsPrice
+    };
+  }
+
+  function trackViewItem(item){
+    if(typeof gtag !== "function") return;
+
+    gtag("event", "view_item", {
+      currency: "GBP",
+      value: item.analyticsPrice,
+      items: [analyticsItem(item)]
+    });
+  }
+
+  function trackAddToCart(item){
+    if(typeof gtag !== "function") return;
+
+    gtag("event", "add_to_cart", {
+      currency: "GBP",
+      value: item.analyticsPrice,
+      items: [analyticsItem(item)]
+    });
+  }
+
   function imageMarkup(item){
     return item.image
       ? `<img src="${item.image}" alt="${item.alt}">`
@@ -385,10 +419,22 @@ permalink: /art-prints/
 
     productImageSlot.innerHTML = imageMarkup(item);
 
+    const addToCartElementId = `paypal-add-to-cart-${item.id}`;
+
     paypalProduct.innerHTML = `
-      <paypal-add-to-cart-button data-id="${item.paypalId}"></paypal-add-to-cart-button>
+      <paypal-add-to-cart-button
+        id="${addToCartElementId}"
+        data-id="${item.paypalId}">
+      </paypal-add-to-cart-button>
     `;
     cartPaypal.AddToCart({ id: item.paypalId });
+
+    const addToCartButton = document.getElementById(addToCartElementId);
+    if(addToCartButton){
+      addToCartButton.addEventListener("add-item-success", () => {
+        trackAddToCart(item);
+      });
+    }
 
     productFacts.innerHTML = printFacts
       .map(fact => `<p>${fact}</p>`)
@@ -402,6 +448,8 @@ permalink: /art-prints/
     grid.hidden = true;
     productView.hidden = false;
     window.scrollTo(0, 0);
+
+    trackViewItem(item);
 
     if(updateHash){
       history.pushState({product:id}, "", `#${id}`);

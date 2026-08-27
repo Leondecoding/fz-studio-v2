@@ -425,7 +425,41 @@ permalink: /studio-materials/
 </script>
 
 <script>
+  const amalfiPaperAnalyticsItem = {
+    item_id: "amalfi-paper-sample-pack",
+    item_name: "Amalfi Watercolour Paper Sample Pack",
+    item_brand: "FZ Studio",
+    item_category: "Studio Materials",
+    item_category2: "Watercolour Paper"
+  };
+
+  function trackAmalfiView(){
+    if(typeof gtag !== "function") return;
+
+    gtag("event", "view_item", {
+      items: [amalfiPaperAnalyticsItem]
+    });
+  }
+
+  function trackAmalfiAddToCart(){
+    if(typeof gtag !== "function") return;
+
+    gtag("event", "add_to_cart", {
+      items: [amalfiPaperAnalyticsItem]
+    });
+  }
+
   cartPaypal.AddToCart({ id: "G82R98F63KZ98" });
+
+  const amalfiAddToCartButton = document.querySelector(
+    'paypal-add-to-cart-button[data-id="G82R98F63KZ98"]'
+  );
+
+  if(amalfiAddToCartButton){
+    amalfiAddToCartButton.addEventListener("add-item-success", trackAmalfiAddToCart);
+  }
+
+  trackAmalfiView();
 </script>
 
 </div>
