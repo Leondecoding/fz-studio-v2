@@ -6,6 +6,9 @@ permalink: pretty
 lang: en-GB
 locale: en_GB
 
+plugins:
+  - jekyll-sitemap
+
 # V2 principle:
 # Keep all secrets out of this repository and out of browser JavaScript.
 # PayPal and newsletter integrations will be added only after the page structure is final.
