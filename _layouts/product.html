@@ -127,25 +127,26 @@ layout: default
     object-fit:cover;
     display:block;
   }
-  .product-copy h1{
-    margin:0 0 10px;
-    font-size:30px;
-    font-weight:400;
-    line-height:1.2;
+  .product-delivery{
+    margin:18px 0 6px;
+    font-size:13px;
+    color:#777;
   }
-  .product-price{
-    margin:0 0 6px;
-    font-size:20px;
-    color:#333;
-  }
-  .product-delivery,
   .product-stock{
     margin:0 0 6px;
     font-size:13px;
     color:#777;
   }
+  .product-copy{
+    width:100%;
+  }
+  @media(min-width:901px){
+    .product-copy{
+      transform:translateY(-22px);
+    }
+  }
   .product-paypal{
-    margin-top:22px;
+    margin-top:0;
     width:100%;
   }
   .product-paypal paypal-add-to-cart-button{
@@ -225,8 +226,14 @@ layout: default
     </div>
 
     <div class="product-copy">
-      <h1>{{ page.title }}</h1>
-      <p class="product-price">£{{ page.price }}</p>
+      {% if product_availability != 'out_of_stock' %}
+        <div class="product-paypal">
+          <paypal-add-to-cart-button id="paypal-add-to-cart-{{ page.product_id }}" data-id="{{ page.paypal_id }}"></paypal-add-to-cart-button>
+        </div>
+      {% else %}
+        <div class="product-unavailable">This product is currently unavailable.</div>
+      {% endif %}
+
       <p class="product-delivery">UK delivery included · UK orders only · Estimated delivery 3–5 working days</p>
       {% if page.stock %}
         {% if page.stock == 0 %}
@@ -236,14 +243,6 @@ layout: default
         {% endif %}
       {% elsif product_availability == 'in_stock' %}
         <p class="product-stock">Available to order</p>
-      {% endif %}
-
-      {% if product_availability != 'out_of_stock' %}
-        <div class="product-paypal">
-          <paypal-add-to-cart-button id="paypal-add-to-cart-{{ page.product_id }}" data-id="{{ page.paypal_id }}"></paypal-add-to-cart-button>
-        </div>
-      {% else %}
-        <div class="product-unavailable">This product is currently unavailable.</div>
       {% endif %}
 
       {% if page.facts and page.facts.size > 0 %}
