@@ -1,0 +1,338 @@
+---
+layout: default
+---
+{% assign product_availability = page.availability | default: 'in_stock' %}
+{% if page.stock == 0 %}{% assign product_availability = 'out_of_stock' %}{% endif %}
+{% case product_availability %}
+  {% when 'out_of_stock' %}{% assign schema_availability = 'https://schema.org/OutOfStock' %}
+  {% when 'preorder' %}{% assign schema_availability = 'https://schema.org/PreOrder' %}
+  {% when 'backorder' %}{% assign schema_availability = 'https://schema.org/BackOrder' %}
+  {% else %}{% assign schema_availability = 'https://schema.org/InStock' %}
+{% endcase %}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": {{ page.title | jsonify }},
+  "description": {{ page.description | jsonify }},
+  "sku": {{ page.product_id | jsonify }},{% if page.image and page.image != "" %}
+  "image": [
+    {{ page.image | absolute_url | jsonify }}{% for gallery_image in page.gallery_images %},
+    {{ gallery_image | absolute_url | jsonify }}{% endfor %}
+  ],{% endif %}
+  "brand": {
+    "@type": "Brand",
+    "name": {{ page.brand | jsonify }}
+  },
+  "offers": {
+    "@type": "Offer",
+    "url": {{ page.url | absolute_url | jsonify }},
+    "priceCurrency": {{ page.currency | jsonify }},
+    "price": {{ page.price | jsonify }},
+    "availability": {{ schema_availability | jsonify }},
+    "itemCondition": "https://schema.org/NewCondition",
+    "seller": {
+      "@type": "Organization",
+      "name": "FZ Studio"
+    },
+    "shippingDetails": {
+      "@type": "OfferShippingDetails",
+      "shippingRate": {
+        "@type": "MonetaryAmount",
+        "value": "0.00",
+        "currency": "GBP"
+      },
+      "shippingDestination": {
+        "@type": "DefinedRegion",
+        "addressCountry": "GB"
+      },
+      "deliveryTime": {
+        "@type": "ShippingDeliveryTime",
+        "handlingTime": {
+          "@type": "QuantitativeValue",
+          "minValue": 1,
+          "maxValue": 2,
+          "unitCode": "DAY"
+        },
+        "transitTime": {
+          "@type": "QuantitativeValue",
+          "minValue": 2,
+          "maxValue": 3,
+          "unitCode": "DAY"
+        }
+      }
+    }
+  }
+}
+</script>
+
+<style>
+  .product-page{
+    width:min(1120px,calc(100% - 44px));
+    margin:0 auto;
+    padding:42px 0 90px;
+  }
+  .product-back{
+    display:inline-block;
+    margin-bottom:22px;
+    color:#666;
+    font-size:14px;
+    text-decoration:none;
+  }
+  .product-back:hover{text-decoration:underline}
+  .product-page-layout{
+    display:grid;
+    grid-template-columns:minmax(0,590px) minmax(310px,1fr);
+    gap:72px;
+    align-items:start;
+  }
+  .product-media-main{
+    width:100%;
+    aspect-ratio:1/1;
+    border:0;
+    padding:0;
+    background:#f2f2f0;
+    overflow:hidden;
+    cursor:zoom-in;
+  }
+  .product-media-main img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    display:block;
+  }
+  .product-media-placeholder{
+    width:100%;
+    height:100%;
+    background:#eeeeec;
+  }
+  .product-media-thumbs{
+    display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    gap:8px;
+    margin-top:8px;
+  }
+  .product-media-thumb{
+    aspect-ratio:1/1;
+    border:0;
+    padding:0;
+    background:#f2f2f0;
+    overflow:hidden;
+    cursor:pointer;
+  }
+  .product-media-thumb img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+  .product-copy h1{
+    margin:0 0 10px;
+    font-size:30px;
+    font-weight:400;
+    line-height:1.2;
+  }
+  .product-price{
+    margin:0 0 6px;
+    font-size:20px;
+    color:#333;
+  }
+  .product-delivery,
+  .product-stock{
+    margin:0 0 6px;
+    font-size:13px;
+    color:#777;
+  }
+  .product-paypal{
+    margin-top:22px;
+    width:100%;
+  }
+  .product-paypal paypal-add-to-cart-button{
+    display:block;
+    width:100%;
+  }
+  .product-unavailable{
+    margin-top:22px;
+    padding:12px 14px;
+    border:1px solid #ddd;
+    color:#555;
+  }
+  .product-facts{
+    margin:28px 0 0;
+    padding:20px 0;
+    border-top:1px solid #e9e9e9;
+    border-bottom:1px solid #e9e9e9;
+    color:#666;
+    font-size:14px;
+    line-height:1.65;
+  }
+  .product-facts p{margin:0 0 5px}
+  .product-facts p:last-child{margin-bottom:0}
+  .product-description{
+    margin-top:22px;
+    color:#555;
+    font-size:15px;
+    line-height:1.75;
+  }
+  .product-description p{margin:0 0 14px}
+  .product-note{
+    margin-top:14px;
+    color:#777;
+    font-size:13px;
+  }
+  .product-returns{
+    margin-top:20px;
+    font-size:13px;
+  }
+  .product-lightbox[hidden]{display:none}
+  .product-lightbox{position:fixed;inset:0;z-index:99999;background:rgba(255,255,255,.97);display:flex;align-items:center;justify-content:center;padding:34px;box-sizing:border-box}
+  .product-lightbox img{max-width:100%;max-height:100%;object-fit:contain}
+  .product-lightbox-close{position:fixed;top:20px;right:18px;z-index:100000;width:42px;height:42px;border:0;background:transparent;font:inherit;font-size:32px;line-height:1;cursor:pointer}
+
+  @media(max-width:900px){
+    .product-page{width:min(680px,calc(100% - 36px));padding-top:28px}
+    .product-page-layout{grid-template-columns:1fr;gap:34px}
+  }
+</style>
+
+<article class="product-page">
+  {% if page.category == 'Art Prints' %}
+    <a class="product-back" href="{{ '/art-prints/' | relative_url }}">← Back to Art Prints</a>
+  {% else %}
+    <a class="product-back" href="{{ '/studio-materials/' | relative_url }}">← Back to Studio Materials</a>
+  {% endif %}
+
+  <div class="product-page-layout">
+    <div class="product-media">
+      <button class="product-media-main" id="product-media-main" type="button" aria-label="Open product image">
+        {% if page.image and page.image != "" %}
+          <img id="product-main-image" src="{{ page.image | relative_url }}" alt="{{ page.image_alt | escape }}">
+        {% else %}
+          <div class="product-media-placeholder" aria-label="Product image coming soon"></div>
+        {% endif %}
+      </button>
+
+      {% if page.gallery_images and page.gallery_images.size > 0 %}
+        <div class="product-media-thumbs" aria-label="Additional product images">
+          {% for gallery_image in page.gallery_images %}
+            <button class="product-media-thumb" type="button">
+              <img src="{{ gallery_image | relative_url }}" alt="{{ page.image_alt | escape }}">
+            </button>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="product-copy">
+      <h1>{{ page.title }}</h1>
+      <p class="product-price">£{{ page.price }}</p>
+      <p class="product-delivery">UK delivery included · UK orders only · Estimated delivery 3–5 working days</p>
+      {% if page.stock %}
+        {% if page.stock == 0 %}
+          <p class="product-stock">Out of stock</p>
+        {% else %}
+          <p class="product-stock">In stock</p>
+        {% endif %}
+      {% elsif product_availability == 'in_stock' %}
+        <p class="product-stock">Available to order</p>
+      {% endif %}
+
+      {% if product_availability != 'out_of_stock' %}
+        <div class="product-paypal">
+          <paypal-add-to-cart-button id="paypal-add-to-cart-{{ page.product_id }}" data-id="{{ page.paypal_id }}"></paypal-add-to-cart-button>
+        </div>
+      {% else %}
+        <div class="product-unavailable">This product is currently unavailable.</div>
+      {% endif %}
+
+      {% if page.facts and page.facts.size > 0 %}
+        <div class="product-facts">
+          {% for fact in page.facts %}<p>{{ fact }}</p>{% endfor %}
+        </div>
+      {% endif %}
+
+      <div class="product-description">
+        {{ content }}
+      </div>
+
+      {% if page.note %}<p class="product-note">{{ page.note }}</p>{% endif %}
+      <p class="product-returns"><a href="{{ '/returns/' | relative_url }}">Returns &amp; refunds</a></p>
+    </div>
+  </div>
+</article>
+
+<div class="product-lightbox" id="product-lightbox" hidden aria-hidden="true">
+  <button class="product-lightbox-close" id="product-lightbox-close" type="button" aria-label="Close image">×</button>
+  <img id="product-lightbox-image" alt="">
+</div>
+
+<script>
+(function(){
+  const product = {
+    item_id: {{ page.product_id | jsonify }},
+    item_name: {{ page.title | jsonify }},
+    item_brand: {{ page.brand | jsonify }},
+    item_category: {{ page.category | jsonify }},
+    item_category2: {{ page.product_type | jsonify }},
+    price: Number({{ page.price | jsonify }})
+  };
+  const currency = {{ page.currency | jsonify }};
+
+  function track(eventName){
+    if(typeof gtag !== "function") return;
+    gtag("event", eventName, {
+      currency: currency,
+      value: product.price,
+      items: [product]
+    });
+  }
+
+  track("view_item");
+
+  const button = document.getElementById("paypal-add-to-cart-{{ page.product_id }}");
+  {% if product_availability != 'out_of_stock' %}
+  cartPaypal.AddToCart({ id: {{ page.paypal_id | jsonify }} });
+  if(button){
+    button.addEventListener("click", function(){ track("add_to_cart"); });
+  }
+  {% endif %}
+
+  const mainButton = document.getElementById('product-media-main');
+  const mainImage = document.getElementById('product-main-image');
+  const lightbox = document.getElementById('product-lightbox');
+  const lightboxImage = document.getElementById('product-lightbox-image');
+  const lightboxClose = document.getElementById('product-lightbox-close');
+
+  document.querySelectorAll('.product-media-thumb img').forEach(function(image){
+    image.parentElement.addEventListener('click', function(){
+      if(!mainImage) return;
+      mainImage.src = image.src;
+      mainImage.alt = image.alt;
+    });
+  });
+
+  function closeLightbox(){
+    lightbox.hidden = true;
+    lightbox.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  if(mainButton && mainImage){
+    mainButton.addEventListener('click', function(){
+      lightboxImage.src = mainImage.currentSrc || mainImage.src;
+      lightboxImage.alt = mainImage.alt || '';
+      lightbox.hidden = false;
+      lightbox.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    });
+  }
+  lightboxClose.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', function(event){
+    if(event.target === lightbox) closeLightbox();
+  });
+  document.addEventListener('keydown', function(event){
+    if(event.key === 'Escape' && !lightbox.hidden) closeLightbox();
+  });
+})();
+</script>

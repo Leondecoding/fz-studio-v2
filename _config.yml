@@ -9,9 +9,23 @@ locale: en_GB
 plugins:
   - jekyll-sitemap
 
+collections:
+  products:
+    output: true
+    permalink: /products/:name/
+
+defaults:
+  - scope:
+      path: ""
+      type: products
+    values:
+      layout: product
+      og_type: product
+
 exclude:
   - PHASE-1-CHECKLIST.md
+  - PRODUCT-UPDATE-GUIDE.md
+  - _tools
 
 # V2 principle:
 # Keep all secrets out of this repository and out of browser JavaScript.
-# PayPal and newsletter integrations will be added only after the page structure is final.
