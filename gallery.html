@@ -1,8 +1,6 @@
 ---
 layout: default
 title: Gallery
-seo_title: Original Watercolour Gallery | FZ Studio
-description: Explore original FZ Studio watercolour works, with studies of botanical form, colour, light and abstraction.
 permalink: /gallery/
 ---
 
@@ -144,36 +142,36 @@ permalink: /gallery/
   }
 </style>
 
-<div id="gallery-page">
+<main id="gallery-page">
   <div class="gallery-grid">
     <figure class="gallery-item">
-      <button class="gallery-frame gallery-open" type="button" aria-label="Open Artwork I">
-        <div class="gallery-placeholder" aria-label="Artwork placeholder"></div>
+      <button class="gallery-frame gallery-open" type="button" aria-label="Open Petals">
+        <img src="{{ '/assets/images/gallery/petals-1.jpg' | relative_url }}" alt="Petals, original watercolour artwork by FZ Studio">
       </button>
       <figcaption>
-        <p class="gallery-title">Artwork I</p>
+        <p class="gallery-title">Petals</p>
       </figcaption>
     </figure>
 
     <figure class="gallery-item">
-      <button class="gallery-frame gallery-open" type="button" aria-label="Open Artwork II">
-        <div class="gallery-placeholder" aria-label="Artwork placeholder"></div>
+      <button class="gallery-frame gallery-open" type="button" aria-label="Open Whale">
+        <img src="{{ '/assets/images/gallery/whale-1.jpg' | relative_url }}" alt="Whale, original watercolour artwork by FZ Studio">
       </button>
       <figcaption>
-        <p class="gallery-title">Artwork II</p>
+        <p class="gallery-title">Whale</p>
       </figcaption>
     </figure>
 
     <figure class="gallery-item">
-      <button class="gallery-frame gallery-open" type="button" aria-label="Open Artwork III">
-        <div class="gallery-placeholder" aria-label="Artwork placeholder"></div>
+      <button class="gallery-frame gallery-open" type="button" aria-label="Open Flore Body">
+        <img src="{{ '/assets/images/gallery/flore-body.png' | relative_url }}" alt="Flore Body, original watercolour artwork by FZ Studio">
       </button>
       <figcaption>
-        <p class="gallery-title">Artwork III</p>
+        <p class="gallery-title">Flore Body</p>
       </figcaption>
     </figure>
   </div>
-</div>
+</main>
 
 
 <div class="gallery-lightbox" id="gallery-lightbox" aria-hidden="true">
@@ -186,20 +184,6 @@ permalink: /gallery/
     const lightbox = document.getElementById('gallery-lightbox');
     const content = lightbox.querySelector('.gallery-lightbox-content');
     const closeButton = lightbox.querySelector('.gallery-lightbox-close');
-
-    function trackGallerySelection(source) {
-      if (typeof gtag !== 'function') return;
-
-      const figure = source.closest('.gallery-item');
-      const title = figure?.querySelector('.gallery-title')?.textContent?.trim();
-
-      if (!title) return;
-
-      gtag('event', 'select_content', {
-        content_type: 'gallery_artwork',
-        content_id: title
-      });
-    }
 
     function openLightbox(source) {
       content.innerHTML = '';
@@ -219,9 +203,6 @@ permalink: /gallery/
       lightbox.classList.add('is-open');
       lightbox.setAttribute('aria-hidden', 'false');
       document.body.classList.add('gallery-lightbox-open');
-
-      trackGallerySelection(source);
-
       closeButton.focus();
     }
 
