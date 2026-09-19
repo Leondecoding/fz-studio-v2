@@ -21,6 +21,7 @@ image_alt: Watercolour painting of a ripe red peach with green leaves on white p
 gallery_images: []
 facts:
   - 10 × 12 in / 25 × 30 cm
+  - Watercolour
   - 315gsm Cold Press textured fine-art paper
   - Archival pigment giclée print
   - Unframed

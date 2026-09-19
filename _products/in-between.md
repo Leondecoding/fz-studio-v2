@@ -21,6 +21,7 @@ image_alt: Loose watercolour painting of flower and butterfly forms in pale pink
 gallery_images: []
 facts:
   - 10 × 12 in / 25 × 30 cm
+  - Watercolour
   - 315gsm Cold Press textured fine-art paper
   - Archival pigment giclée print
   - Unframed

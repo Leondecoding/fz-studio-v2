@@ -21,6 +21,7 @@ image_alt: Loose botanical watercolour painting in violet, pink and blue-green w
 gallery_images: []
 facts:
   - 10 × 12 in / 25 × 30 cm
+  - Watercolour
   - 315gsm Cold Press textured fine-art paper
   - Archival pigment giclée print
   - Unframed
