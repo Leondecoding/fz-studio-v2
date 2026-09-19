@@ -14,8 +14,9 @@ availability: in_stock
 condition: new
 identifier_exists: false
 merchant_enabled: true
+active: true
 stock:
-image:
+image: /assets/images/products/violet-bloom.jpg
 image_alt: Loose botanical watercolour painting in violet, pink and blue-green washes
 gallery_images: []
 facts:

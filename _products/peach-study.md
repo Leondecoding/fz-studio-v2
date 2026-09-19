@@ -1,7 +1,7 @@
 ---
-title: Peach Study
-seo_title: Peach Study Watercolour Fine Art Print | FZ Studio
-description: Fine art giclée print of Peach Study, an original FZ Studio watercolour. 10 × 12 in on 315gsm cold press textured fine-art paper.
+title: Peach
+seo_title: Peach Watercolour Fine Art Print | FZ Studio
+description: Fine art giclée print of Peach, an original FZ Studio watercolour. 10 × 12 in on 315gsm cold press textured fine-art paper.
 product_id: peach-study
 category: Art Prints
 product_type: Fine Art Print
@@ -14,8 +14,9 @@ availability: in_stock
 condition: new
 identifier_exists: false
 merchant_enabled: true
+active: true
 stock:
-image:
+image: /assets/images/products/peach.jpg
 image_alt: Watercolour painting of a ripe red peach with green leaves on white paper
 gallery_images: []
 facts:

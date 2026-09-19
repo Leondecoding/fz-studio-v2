@@ -52,25 +52,27 @@ permalink: /art-prints/
   {% assign prints = site.products | where: "category", "Art Prints" | sort: "order" %}
   <section class="print-grid" aria-label="Art prints">
     {% for product in prints %}
-      <figure class="print-card">
-        <a class="print-card-link"
-           href="{{ product.url | relative_url }}"
-           data-product-id="{{ product.product_id }}"
-           data-product-name="{{ product.title | escape }}"
-           data-product-price="{{ product.price }}">
-          <div class="print-thumb">
-            {% if product.image and product.image != "" %}
-              <img src="{{ product.image | relative_url }}" alt="{{ product.image_alt | escape }}">
-            {% else %}
-              <div class="print-placeholder" aria-label="Product image coming soon"></div>
-            {% endif %}
-          </div>
-          <figcaption class="print-info">
-            <p class="print-title">{{ product.title }}</p>
-            <p class="print-price">£{{ product.price }}</p>
-          </figcaption>
-        </a>
-      </figure>
+      {% if product.active != false %}
+        <figure class="print-card">
+          <a class="print-card-link"
+             href="{{ product.url | relative_url }}"
+             data-product-id="{{ product.product_id }}"
+             data-product-name="{{ product.title | escape }}"
+             data-product-price="{{ product.price }}">
+            <div class="print-thumb">
+              {% if product.image and product.image != "" %}
+                <img src="{{ product.image | relative_url }}" alt="{{ product.image_alt | escape }}">
+              {% else %}
+                <div class="print-placeholder" aria-label="Product image coming soon"></div>
+              {% endif %}
+            </div>
+            <figcaption class="print-info">
+              <p class="print-title">{{ product.title }}</p>
+              <p class="print-price">£{{ product.price }}</p>
+            </figcaption>
+          </a>
+        </figure>
+      {% endif %}
     {% endfor %}
   </section>
 </div>
@@ -80,7 +82,7 @@ permalink: /art-prints/
   const legacyProduct = window.location.hash.slice(1);
   const legacyMap = {
     'peach-study': '{{ "/products/peach-study/" | relative_url }}',
-    'toucan-in-bloom': '{{ "/products/toucan-in-bloom/" | relative_url }}',
+    'in-between': '{{ "/products/in-between/" | relative_url }}',
     'violet-bloom': '{{ "/products/violet-bloom/" | relative_url }}'
   };
   if(legacyMap[legacyProduct]){
