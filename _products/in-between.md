@@ -5,7 +5,7 @@ description: Fine art giclée print of The Instant Between, an original FZ Studi
 product_id: in-between
 category: Art Prints
 product_type: Fine Art Print
-order: 20
+order: 10
 price: "35.00"
 currency: GBP
 brand: FZ Studio

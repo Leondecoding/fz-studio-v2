@@ -5,7 +5,7 @@ description: Fine art giclée print of Peach, an original FZ Studio watercolour.
 product_id: peach-study
 category: Art Prints
 product_type: Fine Art Print
-order: 10
+order: 20
 price: "35.00"
 currency: GBP
 brand: FZ Studio
