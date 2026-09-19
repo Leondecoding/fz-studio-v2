@@ -1,7 +1,7 @@
 ---
-title: In Between
-seo_title: In Between Watercolour Fine Art Print | FZ Studio
-description: Fine art giclée print of In Between, an original FZ Studio watercolour exploring flower and butterfly forms through translucent pink, violet and blue-grey washes. 10 × 12 in on 315gsm cold press textured fine-art paper.
+title: The Instant Between
+seo_title: The Instant Between Watercolour Fine Art Print | FZ Studio
+description: Fine art giclée print of The Instant Between, an original FZ Studio watercolour exploring flower and butterfly forms through translucent pink, violet and blue-grey washes. 10 × 12 in on 315gsm cold press textured fine-art paper.
 product_id: in-between
 category: Art Prints
 product_type: Fine Art Print
