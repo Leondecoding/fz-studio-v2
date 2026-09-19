@@ -256,7 +256,9 @@ layout: default
       </div>
 
       {% if page.note %}<p class="product-note">{{ page.note }}</p>{% endif %}
-      <p class="product-returns"><a href="{{ '/returns/' | relative_url }}">Returns &amp; refunds</a></p>
+      {% unless page.category == 'Art Prints' %}
+        <p class="product-returns"><a href="{{ '/returns/' | relative_url }}">Returns &amp; refunds</a></p>
+      {% endunless %}
     </div>
   </div>
 </article>
