@@ -8,13 +8,14 @@ permalink: /gallery/
   #gallery-page {
     max-width: 1540px;
     margin: 0 auto;
-    padding: 34px 28px 72px;
+    padding: 28px 28px 72px;
   }
 
   .gallery-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 34px;
+    column-gap: 34px;
+    row-gap: 100px;
     align-items: start;
   }
 
@@ -42,6 +43,12 @@ permalink: /gallery/
     object-fit: contain;
     object-position: center bottom;
     display: block;
+  }
+
+  @media (min-width: 961px) {
+    .gallery-item:nth-child(-n+3) .gallery-frame {
+      aspect-ratio: 1.48 / 1;
+    }
   }
 
   .gallery-placeholder {
