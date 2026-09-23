@@ -9,11 +9,11 @@ order: 10
 price: "35.00"
 currency: GBP
 brand: FZ Studio
-paypal_id:
-availability: out_of_stock
+paypal_id: EGNYAHF2EYYGA
+availability: in_stock
 condition: new
 identifier_exists: false
-merchant_enabled: false
+merchant_enabled: true
 active: true
 stock:
 image: /assets/images/products/in-between.jpg
@@ -28,6 +28,6 @@ facts:
   - Printed to order by FZ Studio
   - Open edition
   - UK delivery included
-note: This print will be available to order once its PayPal product button is connected.
+note: Fine art giclée print from the original FZ Studio watercolour.
 ---
 An original watercolour in which flower and butterfly forms meet, overlap and partially dissolve into one another. Pale washes and open paper allow the image to move between recognition and abstraction.
