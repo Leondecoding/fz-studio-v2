@@ -51,10 +51,11 @@ permalink: /art-prints/
 </style>
 
 <div id="art-prints-page">
-  {% assign prints = site.products | where: "category", "Art Prints" | sort: "order" %}
+  {% assign print_order = "in-between,peach-study,violet-bloom" | split: "," %}
   <section class="print-grid" aria-label="Art prints">
-    {% for product in prints %}
-      {% if product.active != false %}
+    {% for product_id in print_order %}
+      {% assign product = site.products | where: "product_id", product_id | first %}
+      {% if product and product.active != false %}
         <figure class="print-card">
           <a class="print-card-link"
              href="{{ product.url | relative_url }}"

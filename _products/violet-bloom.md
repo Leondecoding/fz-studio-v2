@@ -5,7 +5,6 @@ description: Fine art giclée print of Violet Bloom, an original FZ Studio botan
 product_id: violet-bloom
 category: Art Prints
 product_type: Fine Art Print
-order: 30
 price: "35.00"
 currency: GBP
 brand: FZ Studio
